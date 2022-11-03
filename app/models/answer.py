@@ -21,6 +21,16 @@ class Answer(db.Model):
             'answer': self.answer,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
+        }
+
+    def to_dict_answer_rel(self):
+        return {
+            'id': self.id,
+            'user_id':self.user_id,
+            'questionId': self.question_id,
+            'answer': self.answer,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
             'user': self.user.to_dict(),
             'question': self.question.to_dict_question()
         }
