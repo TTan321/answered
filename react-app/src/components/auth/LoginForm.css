@@ -19,11 +19,15 @@
 
 #loginTitleContainer {
     width: 600px;
-    height: 116px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+}
+
+#loginTitle {
+    margin-top: 0;
+    border-bottom: 1px solid black;
 }
 
 #loginInputsContainer {
@@ -46,7 +50,7 @@
 .loginErrors {
     height: 27px;
     padding: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: red;
     font-weight: bold;
 }
@@ -58,5 +62,9 @@
     height: 38px;
     border: none;
     border-radius: 25px;
-    margin-top: 15px;
+    margin-top: 10px;
+}
+
+#signUpModalText {
+    margin-top: 5px;
 }

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
+import SignUpFormModal from './SignUpFormModal';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,6 +19,12 @@ const LoginForm = () => {
       setErrors(data);
     }
   };
+
+  const demoLogin = async (e) => {
+    e.preventDefault()
+    await dispatch(login('demo@aa.io', 'password'))
+    return <Redirect to='/' />;
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -39,7 +46,7 @@ const LoginForm = () => {
           <p style={{ margin: '0', color: 'grey' }}>Get the answers to all questions</p>
         </div>
         <div id='loginInputsContainer'>
-          <h2>Login</h2>
+          <h2 id='loginTitle'>Login</h2>
           <div className='loginInputsDiv'>
             <label htmlFor='email'>Email</label>
             <input
@@ -66,7 +73,9 @@ const LoginForm = () => {
                 <div key={ind}>{error}</div>
               ))}
             </div>
+            <SignUpFormModal />
             <button className='authButton' type='submit'>Login</button>
+            <button className='authButton' onClick={(e) => demoLogin(e)}>Demo User</button>
           </div>
         </div>
       </form>
