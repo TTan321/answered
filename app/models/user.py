@@ -10,7 +10,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    questions = db.relationship('Question', back_populates='user', cascade='all,delete')
+    # questions = db.relationship('Question', back_populates='user', cascade='all,delete')
+    # answers = db.relationship('Answer', back_populates='user', cascade='all,delete')
 
     @property
     def password(self):
@@ -28,5 +29,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'questions': [question.to_dict_question() for question in self.questions]
+            # 'questions': [question.to_dict_question() for question in self.questions]
+            # 'answers': [answer.to_dict_answer() for answer in self.answers]
         }
