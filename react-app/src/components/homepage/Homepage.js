@@ -13,8 +13,6 @@ function Homepage() {
     const questions = useSelector(state => state.questionsState)
     const questionsArr = Object.values(questions)
 
-    console.log('QUESTIONS: ', questions)
-
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadQuestions())

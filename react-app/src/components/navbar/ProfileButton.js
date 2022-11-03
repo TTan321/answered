@@ -6,7 +6,7 @@ import AddQuestionModal from '../questions/AddQuestionModal';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
 

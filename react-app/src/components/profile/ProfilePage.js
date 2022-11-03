@@ -13,8 +13,6 @@ function ProfilePage() {
     const [showAnswers, setShowAnswers] = useState(false)
     const [showQuestions, setShowQuestions] = useState(false)
 
-    console.log('USER: ', user)
-
     useEffect(() => {
         dispatch(authenticate())
     }, [dispatch])
