@@ -12,7 +12,7 @@ question_routes = Blueprint('questions', __name__)
 def get_questions():
     questions = Question.query.all()
     if len([question.to_dict_question() for question in questions]):
-        return {'questions': [question.to_dict_question() for question in questions]}
+        return {'questions': [question.to_dict_question_rel() for question in questions]}
     return {'error': 'query failed'}
 
 # Add a question
