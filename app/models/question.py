@@ -1,16 +1,16 @@
 from .db import db
-from datetime import datetime
+from datetime import date
 
 class Question(db.Model):
     __tablename__ = "questions"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey=('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     question = db.Column(db.String(1000), nullable=False)
-    created_at = db.Column(db.Date, default=datetime.today())
-    updated_at = db.Column(db.Date, default=datetime.today())
+    created_at = db.Column(db.Date, default=date.today())
+    updated_at = db.Column(db.Date, default=date.today())
     user = db.relationship('User', back_populates='questions')
-    answers = db.relationship('Answer', back_populates='question')
+    answers = db.relationship('Answer', back_populates='question', cascade='all, delete')
 
     def to_dict_question(self):
         return {
