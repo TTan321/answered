@@ -7,13 +7,13 @@ from datetime import date
 answer_routes = Blueprint('answers', __name__)
 
 # Get all answers
-@answer_routes('')
+@answer_routes.route('')
 def get_answers():
     answers = Answer.query.all()
     return {'answers': [answer.to_dict_answer for answer in answers]}
 
 # Edit an answer by answer id
-@answer_routes('/<int:answer_id>', methods=['PUT'])
+@answer_routes.route('/<int:answer_id>', methods=['PUT'])
 def edit_answer(answer_id):
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -26,7 +26,7 @@ def edit_answer(answer_id):
     return form.errors
 
 #  Delete an answer by answer id
-@answer_routes('<int:answer_id>', methods=['DELETE'])
+@answer_routes.route('<int:answer_id>', methods=['DELETE'])
 def delete_answer(answer_id):
     answer = Answer.query.get(answer_id)
     if answer:

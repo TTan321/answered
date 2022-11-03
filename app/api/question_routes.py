@@ -8,7 +8,7 @@ from datetime import date
 question_routes = Blueprint('questions', __name__)
 
 # Get all questions
-@question_routes('')
+@question_routes.route('')
 def get_questions():
     questions = Question.query.all()
     if len([question.to_dict_question() for question in questions]):
@@ -16,7 +16,7 @@ def get_questions():
     return {'error': 'query failed'}
 
 # Add a question
-@question_routes('', methods=['POST'])
+@question_routes.route('', methods=['POST'])
 def add_question():
     form = QuestionForm()
     user = current_user.to_dict()
@@ -33,7 +33,7 @@ def add_question():
 
 
 # Edit a question
-@question_routes('/<int:question_id>', methods=['PUT'])
+@question_routes.route('/<int:question_id>', methods=['PUT'])
 def edit_question(question_id):
     form = QuestionForm()
     question = Question.query.get(question_id)
@@ -46,7 +46,7 @@ def edit_question(question_id):
     return form.errors
 
 # Add an answer to a question
-@question_routes('/<int:question_id>/answer', methods=['POST'])
+@question_routes.route('/<int:question_id>/answer', methods=['POST'])
 def add_answer():
     form = AnswerForm()
     user = current_user.to_dict()
@@ -63,7 +63,7 @@ def add_answer():
     return form.errors
 
 # Delete a question
-@question_routes('/<int:question_id>', methods=['DELETE'])
+@question_routes.route('/<int:question_id>', methods=['DELETE'])
 def delete_question(question_id):
     question = Question.query.get(question_id)
     if question:

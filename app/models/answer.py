@@ -2,7 +2,7 @@ from .db import db
 from datetime import date
 
 class Answer(db.Model):
-    __tablename__ = "tables"
+    __tablename__ = "answers"
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
