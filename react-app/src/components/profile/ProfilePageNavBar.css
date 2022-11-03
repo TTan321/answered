@@ -1,0 +1,7 @@
+#profilePageSelections {
+    display: flex;
+    justify-content: space-evenly;
+    width: 572px;
+    border-bottom: 1px solid black;
+    margin-bottom: 40px;
+}

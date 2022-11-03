@@ -1,0 +1,73 @@
+#profilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profilePageHeaderDiv {
+    margin-top: 90px;
+    width: 572px;
+    height: 155px;
+    display: flex;
+    column-gap: 15px;
+}
+
+#userFirstInitial {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    background-color: rgb(216, 99, 95);
+    font-size: 70px;
+}
+
+#usersProfileName {
+    margin-top: 40px;
+    font-size: 40px;
+}
+
+#usersQuestionsContainer {
+    border: 1px solid lightgray;
+    height: 100px;
+    width: 552px;
+    padding: 10px;
+    margin-bottom: 30px;
+    overflow-wrap: normal;
+    height: max-content;
+    border-radius: 5px;
+}
+
+.usersQuestions {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.timeAndButtons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#postedTime {
+    margin: 0;
+}
+
+.modifyButtons {
+    height: 25px;
+    width: 80px;
+    background-color: rgb(46, 105, 255, 0.5);
+    border: none;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.edit {
+    margin-right: 5px;
+}
