@@ -1,0 +1,9 @@
+#navBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100vw;
+    column-gap: 50%;
+    border-bottom: 1px solid lightgrey;
+}
