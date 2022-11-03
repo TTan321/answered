@@ -29,3 +29,15 @@
     width: 100%;
     cursor: pointer;
 }
+
+.addQuestion {
+    background-color: #b92b27;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    border: none;
+    border-radius: 25px;
+    width: 100px;
+    cursor: pointer;
+}

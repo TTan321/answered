@@ -1,5 +1,11 @@
 #profileContainer {
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navProfileIcon {
+    padding-right: 15px;
 }
 
 .profile-dropdown {
@@ -30,7 +36,7 @@
     padding: 8px 8px;
     margin: 0;
     top: 46px;
-    right: 23%;
+    right: 22%;
 }
 
 .profile-details-li {

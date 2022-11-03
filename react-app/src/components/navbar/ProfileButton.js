@@ -28,7 +28,7 @@ function ProfileButton({ user }) {
     return (
         <div>
             <div id='profileContainer' onClick={openMenu}>
-                <i className="fas fa-user-circle fa-2x" />
+                <i className="fas fa-user-circle fa-2x navProfileIcon" />
                 <AddQuestionModal user={user} />
             </div>
             {showMenu && (
