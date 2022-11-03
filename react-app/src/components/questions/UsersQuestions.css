@@ -1,0 +1,12 @@
+#userQuestionsPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#userQuestionsHeaderDiv {
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 50px;
+}

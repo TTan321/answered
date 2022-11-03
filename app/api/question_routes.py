@@ -28,7 +28,7 @@ def add_question():
         )
         db.session.add(data)
         db.session.commit()
-        return {'question': data.to_dict_question()}
+        return {'question': data.to_dict_question_rel()}
     return form.errors
 
 
@@ -69,5 +69,5 @@ def delete_question(question_id):
     if question:
         db.session.delete(question)
         db.session.commit()
-        return {'message': 'question has been deleted', 'id': question.to_dict_question().id}
+        return {'message': 'question has been deleted', 'id': question_id}
     return {'message': 'this question does not exist'}

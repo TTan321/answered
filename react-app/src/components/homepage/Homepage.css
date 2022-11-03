@@ -8,6 +8,25 @@
 
 #questionsFeed {
     width: 568px;
+    padding-top: 85px;
+}
+
+.questionUser {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.questionUserInfo {
+    padding-left: 10px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.date {
+    color: grey
 }
 
 .questionsContainer {
@@ -18,4 +37,9 @@
     padding: 16px 16px;
     border-radius: 5px;
     border: 1px solid lightgray;
+}
+
+.question {
+    font-weight: bold;
+    font-size: 20px;
 }

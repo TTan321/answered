@@ -13,8 +13,6 @@ function Homepage() {
     const questions = useSelector(state => state.questionsState)
     const questionsArr = Object.values(questions)
 
-    console.log('QUESTIONS: ', questions)
-
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadQuestions())
@@ -25,10 +23,14 @@ function Homepage() {
             <NavBar user={user} />
             <div id='questionsFeed'>
                 {
-                    questionsArr.map(question => (
+                    questionsArr.reverse().map(question => (
                         <div key={question.id} className='questionsContainer'>
                             <div className="questionUser">
-                                {question.user.firstname} {question.user.lastname}
+                                <i className="fas fa-user-circle fa-2x" />
+                                <div className="questionUserInfo">
+                                    <span className="name">{question.user.firstname} {question.user.lastname}</span><br />
+                                    <span className="date">{question.createdAt.slice(5, 16)}</span><br />
+                                </div>
                             </div>
                             <div className="question">
                                 {question.question}
