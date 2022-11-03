@@ -19,6 +19,14 @@ def get_questions():
 @question_routes.route('', methods=['POST'])
 def add_question():
     form = QuestionForm()
+    print(f"""
+    ---------------
+    ---------------,
+    {form.data}
+    ,
+    ---------------
+    ---------------
+    """)
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -28,7 +36,7 @@ def add_question():
         )
         db.session.add(data)
         db.session.commit()
-        return {'question': data.to_dict_question()}
+        return {'question': data.to_dict_question_rel()}
     return form.errors
 
 

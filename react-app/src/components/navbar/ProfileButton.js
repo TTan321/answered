@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
+import AddQuestionModal from '../questions/AddQuestionModal';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
@@ -9,7 +10,6 @@ function ProfileButton({ user }) {
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
 
-    console.log('USER: ', user)
 
     const openMenu = () => {
         if (showMenu) return;
@@ -29,6 +29,7 @@ function ProfileButton({ user }) {
         <div>
             <div id='profileContainer' onClick={openMenu}>
                 <i className="fas fa-user-circle fa-2x" />
+                <AddQuestionModal user={user} />
             </div>
             {showMenu && (
                 <ul className="profile-details">
