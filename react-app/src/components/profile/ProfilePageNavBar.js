@@ -2,14 +2,14 @@
 
 import './ProfilePageNavBar.css'
 
-function ProfilePageNavBar() {
+function ProfilePageNavBar({ setShowAnswers, setShowQuestions }) {
 
     return (
         <div id='profilePageSelections'>
             <p>
                 Answers
             </p>
-            <p>
+            <p onClick={() => setShowQuestions(true)}>
                 Questions
             </p>
         </div>

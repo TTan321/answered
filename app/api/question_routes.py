@@ -19,14 +19,6 @@ def get_questions():
 @question_routes.route('', methods=['POST'])
 def add_question():
     form = QuestionForm()
-    print(f"""
-    ---------------
-    ---------------,
-    {form.data}
-    ,
-    ---------------
-    ---------------
-    """)
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -77,5 +69,5 @@ def delete_question(question_id):
     if question:
         db.session.delete(question)
         db.session.commit()
-        return {'message': 'question has been deleted', 'id': question.to_dict_question().id}
+        return {'message': 'question has been deleted', 'id': question_id}
     return {'message': 'this question does not exist'}

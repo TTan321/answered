@@ -4,6 +4,7 @@ import { authenticate } from "../../store/session";
 import NavBar from "../navbar/NavBar";
 import ProfilePageNavBar from "./ProfilePageNavBar";
 import './ProfilePage.css'
+import { removeQuestion } from "../../store/questions";
 
 function ProfilePage() {
     const dispatch = useDispatch()
@@ -11,9 +12,17 @@ function ProfilePage() {
     const [showAnswers, setShowAnswers] = useState(false)
     const [showQuestions, setShowQuestions] = useState(false)
 
+    console.log('USER: ', user)
+
     useEffect(() => {
         dispatch(authenticate())
     }, [dispatch])
+
+    const deleteQuestion = async (e, id) => {
+        e.preventDefault()
+        await dispatch(removeQuestion(id))
+        await dispatch(authenticate())
+    }
 
     return user && (
         <div id='profilePage'>
@@ -25,7 +34,27 @@ function ProfilePage() {
             <div>
                 <ProfilePageNavBar setShowAnswers={setShowAnswers} setShowQuestions={setShowQuestions} />
             </div>
-        </div>
+            <div>
+                {showQuestions && (
+                    <div>
+                        {
+                            user.questions.map(question => (
+                                <div key={question.id} id='usersQuestionsContainer'>
+                                    <p className='usersQuestions'>{question.question}</p>
+                                    <div className="timeAndButtons">
+                                        <p id='postedTime'>Posted: <span>{question.createdAt.slice(5, 16)}</span></p>
+                                        <div>
+                                            <button className="edit modifyButtons">Edit</button>
+                                            <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, question.id)}>Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div >
+                )}
+            </div>
+        </div >
     )
 }
 export default ProfilePage
