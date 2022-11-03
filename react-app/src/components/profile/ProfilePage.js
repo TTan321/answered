@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "../../store/session";
 import NavBar from "../navbar/NavBar";
 import ProfilePageNavBar from "./ProfilePageNavBar";
-import './ProfilePage.css'
 import { removeQuestion } from "../../store/questions";
+import EditQuestionModal from "../questions/EditQuestionModal"
+import './ProfilePage.css'
 
 function ProfilePage() {
     const dispatch = useDispatch()
@@ -44,7 +45,7 @@ function ProfilePage() {
                                     <div className="timeAndButtons">
                                         <p id='postedTime'>Posted: <span>{question.createdAt.slice(5, 16)}</span></p>
                                         <div>
-                                            <button className="edit modifyButtons">Edit</button>
+                                            <EditQuestionModal question={question} />
                                             <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, question.id)}>Delete</button>
                                         </div>
                                     </div>
