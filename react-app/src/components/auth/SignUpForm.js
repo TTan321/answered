@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SignUpForm.css'
 
-const SignUpForm = () => {
+const SignUpForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -58,9 +57,8 @@ const SignUpForm = () => {
     <div id='signUpFormContainer'>
       <div>
         <div>
-          <i class="fa-thin fa-xmark"></i>
-          <FontAwesomeIcon icon="fa-thin fa-xmark" />
-          <h1>Sign Up</h1>
+          <i class="fas fa-times signup-cancel" onClick={() => setShowModal(false)}></i>
+          <h1 id='signUpTitle'>Sign Up</h1>
         </div>
         <form onSubmit={onSignUp} id='signUpForm'>
           <div className='loginInputsDiv'>

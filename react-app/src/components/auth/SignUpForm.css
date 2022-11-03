@@ -6,6 +6,28 @@
     width: 600px;
 }
 
+.signup-cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.signup-cancel:hover {
+    background-color: rgb(211, 211, 211, 0.3);
+}
+
+#signUpTitle {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+
 #signUpForm {
     height: 500px;
     width: 550px;
