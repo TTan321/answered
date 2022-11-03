@@ -5,7 +5,7 @@ class Answer(db.Model):
     __tablename__ = "tables"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
     answer = db.Column(db.String(1000), nullable=False)
     created_at = db.Column(db.Date, default=date.today())
