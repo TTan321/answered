@@ -33,15 +33,19 @@ function ProfileButton({ user }) {
             </div>
             {showMenu && (
                 <ul className="profile-details">
-                    <li className="profile-details-li">
+                    <li className="profile-details-li" onClick={() => history.push(`/user/${user.id}`)} >
                         <div>{user.firstname} {user.lastname}</div>
                     </li>
+                    {/* <li className="profile-details-li" onClick={() => history.push(`/users/${user.id}/questions`)}>
+                        My Questions
+                    </li> */}
                     <li className="profile-details-li">
                         <LogoutButton />
                     </li>
                 </ul>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
 

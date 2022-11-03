@@ -1,0 +1,30 @@
+#profilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profilePageHeaderDiv {
+    margin-top: 90px;
+    width: 572px;
+    height: 155px;
+    display: flex;
+    column-gap: 15px;
+}
+
+#userFirstInitial {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    background-color: rgb(216, 99, 95);
+    font-size: 70px;
+}
+
+#usersProfileName {
+    margin-top: 40px;
+    font-size: 40px;
+}
