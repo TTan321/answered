@@ -1,5 +1,5 @@
 from .db import db
-from datetime import datetime
+from datetime import date
 
 class Answer(db.Model):
     __tablename__ = "tables"
@@ -8,8 +8,8 @@ class Answer(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
     answer = db.Column(db.String(1000), nullable=False)
-    created_at = db.Column(db.Date, default=datetime.today())
-    updated_at = db.Column(db.Date, default=datetime.today())
+    created_at = db.Column(db.Date, default=date.today())
+    updated_at = db.Column(db.Date, default=date.today())
     user = db.relationship('User', back_populates='answers')
     question = db.relationship('Question', back_populates='answers')
 
