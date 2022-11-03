@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -31,34 +32,45 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    <div id='loginPage'>
+      <form onSubmit={onLogin} id='loginForm'>
+        <div id='loginTitleContainer'>
+          <h1 style={{ marginBottom: '5px', color: 'red' }}>Answered</h1>
+          <p style={{ margin: '0', color: 'grey' }}>Get the answers to all questions</p>
+        </div>
+        <div id='loginInputsContainer'>
+          <h2>Login</h2>
+          <div className='loginInputsDiv'>
+            <label htmlFor='email'>Email</label>
+            <input
+              className='loginInputs'
+              name='email'
+              type='text'
+              placeholder='Your Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div className='loginInputsDiv'>
+            <label htmlFor='password'>Password</label>
+            <input
+              className='loginInputs'
+              name='password'
+              type='password'
+              placeholder='Your Password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <div className='loginErrors'>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <button className='authButton' type='submit'>Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
