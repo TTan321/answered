@@ -1,0 +1,66 @@
+.addAnswer {
+    font-weight: bold;
+    color: grey;
+}
+
+.fa-pen-square {
+    color: rgb(46, 105, 255);
+}
+
+#addAnswerFormContainer {
+    height: 330px;
+    width: 500px;
+}
+
+#addAnswerXDiv {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#addAnswerXDiv:hover {
+    background-color: rgb(211, 211, 211, 0.5);
+}
+
+#belowAnswerXDiv {
+    padding: 0 18px;
+}
+
+#answerFormQuestion {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.answersErrorsDiv {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.postButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.postButton {
+    background-color: rgb(46, 105, 255, 0.5);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    width: 70px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}

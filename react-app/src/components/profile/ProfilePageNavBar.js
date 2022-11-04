@@ -1,18 +1,41 @@
-
-
 import './ProfilePageNavBar.css'
 
-function ProfilePageNavBar({ setShowAnswers, setShowQuestions }) {
+function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions }) {
+
+    const displayAnswers = (e) => {
+        e.preventDefault()
+        setShowQuestions(false)
+        setShowAnswers(true)
+    }
+
+    const displayQuestions = (e) => {
+        e.preventDefault()
+        setShowAnswers(false)
+        setShowQuestions(true)
+    }
+
+    const filterStyles = {
+        color: 'red',
+        borderBottom: '2px solid red',
+    }
 
     return (
         <div id='profilePageSelections'>
-            <p>
-                Answers
+            <p
+                className='profileNavFilters'
+                onClick={(e) => displayAnswers(e)}
+                style={showAnswers ? filterStyles : {}}
+            >
+                {user.answers.length} Answers
             </p>
-            <p onClick={() => setShowQuestions(true)}>
-                Questions
+            <p
+                className='profileNavFilters'
+                onClick={(e) => displayQuestions(e)}
+                style={showQuestions ? filterStyles : {}}
+            >
+                {user.questions.length} Questions
             </p>
-        </div>
+        </div >
     )
 }
 

@@ -6,6 +6,7 @@
 
 .navProfileIcon {
     padding-right: 15px;
+    cursor: pointer;
 }
 
 .profile-dropdown {
@@ -14,11 +15,10 @@
     background-color: white;
     display: flex;
     height: 42px;
-    width: 76px;
+    width: 100px;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    transition: all 0.3s ease-in 0s;
 }
 
 .profile-details {
@@ -33,17 +33,40 @@
     max-width: 300px;
     max-height: 480px;
     overflow: hidden;
-    padding: 8px 8px;
     margin: 0;
-    top: 46px;
-    right: 22%;
+    top: 50px;
+    right: 21%;
+    padding: 0;
 }
 
 .profile-details-li {
-    transition: all 0.3s ease-in 0s;
+    display: flex;
+    align-items: center;
     width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    cursor: pointer;
 }
 
 .profile-details-li:hover {
-    background-color: rgba(34, 34, 34, 0.075);
+    background-color: rgba(34, 34, 34, 0.05);
+}
+
+.navbar-name {
+    font-weight: bold;
+    font-size: 18px;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+}
+
+#navbarNoImageIcon {
+    height: 35px;
+    width: 35px;
+    color: white;
+    background-color: rgb(216, 99, 95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import './LoginForm.css'
 import SignUpFormModal from './SignUpFormModal';
+import logo from '../navbar/logo/answered-logo.png'
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -42,7 +43,7 @@ const LoginForm = () => {
     <div id='loginPage'>
       <form onSubmit={onLogin} id='loginForm'>
         <div id='loginTitleContainer'>
-          <h1 style={{ marginBottom: '5px', color: 'red' }}>Answered</h1>
+          <img className='loginLogo' src={logo} />
           <p style={{ margin: '0', color: 'grey' }}>Get the answers to all questions</p>
         </div>
         <div id='loginInputsContainer'>

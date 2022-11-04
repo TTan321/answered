@@ -47,19 +47,19 @@ def edit_question(question_id):
 
 # Add an answer to a question
 @question_routes.route('/<int:question_id>/answer', methods=['POST'])
-def add_answer():
+def add_answer(question_id):
     form = AnswerForm()
     user = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
         data = Answer(
             user_id = user['id'],
-            question_id = form.data['questionId'],
+            question_id = question_id,
             answer = form.data['answer']
         )
         db.session.add(data)
         db.session.commit()
-        return {'answer': data.to_dict_answer()}
+        return {'answer': data.to_dict_answer_rel()}
     return form.errors
 
 # Delete a question
