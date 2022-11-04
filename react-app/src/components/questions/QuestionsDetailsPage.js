@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadQuestions } from "../../store/questions";
 import { authenticate } from "../../store/session";
+import AddAnswerModal from "../answers/AddAnswerModal";
 import NavBar from "../navbar/NavBar";
 import './QuestionDetailsPage.css'
 
@@ -26,9 +27,11 @@ function QuestionDetailsPage() {
             <NavBar user={user} />
             <div id='questionDetailPage'>
                 <div className="questionDiv">
-                    <p className="questionText">{currentQuestion.question}</p>
-                    <div>
-
+                    <div className="questiontextDiv">
+                        <p className="questionText">{currentQuestion.question}</p>
+                    </div>
+                    <div className="interactionDiv">
+                        <AddAnswerModal question={currentQuestion} />
                     </div>
                 </div>
             </div>

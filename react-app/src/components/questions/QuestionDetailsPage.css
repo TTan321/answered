@@ -13,6 +13,9 @@
     border-radius: 5px;
     width: 628px;
     height: max-content;
+}
+
+.questiontextDiv {
     padding: 0 16px;
     padding-top: 16px;
 }
@@ -21,4 +24,29 @@
     margin: 0;
     font-size: 26px;
     font-weight: bold;
+}
+
+.interactionDiv {
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.answerDiv {
+    border-radius: 25px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.answerDiv:hover {
+    background-color: rgb(211, 211, 211, 0.3);
 }
