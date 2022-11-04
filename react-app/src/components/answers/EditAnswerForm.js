@@ -1,30 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addAnswer, getAnswers } from '../../store/answers';
-import './AddAnswerForm.css'
+import { editAnswer, getAnswers } from '../../store/answers'
+import { loadQuestions } from '../../store/questions'
+import { authenticate } from '../../store/session'
+import './EditAnswerForm.css'
 
-function AddAnswerForm({ user, setShowModal, question }) {
+function EditAnswerForm({ user, setShowModal, answer, questions }) {
     const dispatch = useDispatch()
-    const [answer, setAnswer] = useState('');
-    const [errors, setErrors] = useState([]);
+    const question = questions.find(question => question.id === answer.questionId)
 
-    console.log('ADD ANSWER QUESTIONS: ', question)
+    const [editedAnswer, setEditedAnswer] = useState(answer.answer);
+    const [errors, setErrors] = useState([]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (answer === 0) validateErrors.push("Answer is required.");
+        if (editedAnswer === 0) validateErrors.push("Answer is required.");
         await setErrors(validateErrors);
 
         const payload = {
-            'answer': answer,
+            'answer': editedAnswer,
             'user_id': user.id,
-            'question_id': question.id
+            'answer_id': answer.id,
+            'questionId': question.id
         }
 
-        await dispatch(addAnswer(payload))
+        await dispatch(editAnswer(payload))
         await dispatch(getAnswers())
+        await dispatch(authenticate())
         setShowModal(false);
 
     };
@@ -45,9 +49,9 @@ function AddAnswerForm({ user, setShowModal, question }) {
                             className=''
                             rows="9"
                             cols="60"
-                            value={answer}
+                            value={editedAnswer}
                             placeholder="Write answer here"
-                            onChange={(e) => setAnswer(e.target.value)}>
+                            onChange={(e) => setEditedAnswer(e.target.value)}>
                         </textarea>
                         <div className='answersErrorsDiv'>
                             {errors.map((error, idx) => (
@@ -64,4 +68,4 @@ function AddAnswerForm({ user, setShowModal, question }) {
     )
 }
 
-export default AddAnswerForm
+export default EditAnswerForm

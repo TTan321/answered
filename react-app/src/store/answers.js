@@ -57,13 +57,15 @@ export const addAnswer = answer => async dispatch => {
 }
 
 export const editAnswer = answer => async dispatch => {
-    const response = await fetch(`/api/answers/${answer.answerId}`, {
+    console.log('IN THUNk EDIT ANSWER PAYLOAD: ', answer)
+    const response = await fetch(`/api/answers/${answer.answer_id}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answer)
     });
     if (response.ok) {
         const data = await response.json()
+        console.log('RETURNED EDITED ANSWER: ', data)
         dispatch(updateAnswer(data.answer))
         return { ...data }
     }

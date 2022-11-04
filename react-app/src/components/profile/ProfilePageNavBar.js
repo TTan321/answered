@@ -1,5 +1,5 @@
 
-
+import { useState } from 'react'
 import './ProfilePageNavBar.css'
 
 function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions }) {
@@ -16,19 +16,24 @@ function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, s
         setShowQuestions(true)
     }
 
+    const filterStyles = {
+        color: 'red',
+        borderBottom: '1px solid red',
+    }
+
     return (
         <div id='profilePageSelections'>
             <p
                 className='profileNavFilters'
                 onClick={(e) => displayAnswers(e)}
-                style={showAnswers ? { color: 'red', borderBottom: '1px solid red' } : {}}
+                style={showAnswers ? filterStyles : {}}
             >
                 {user.answers.length} Answers
             </p>
             <p
                 className='profileNavFilters'
                 onClick={(e) => displayQuestions(e)}
-                style={showQuestions ? { color: 'red', borderBottom: '1px solid red' } : {}}
+                style={showQuestions ? filterStyles : {}}
             >
                 {user.questions.length} Questions
             </p>

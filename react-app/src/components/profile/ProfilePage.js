@@ -5,11 +5,15 @@ import NavBar from "../navbar/NavBar";
 import ProfilePageNavBar from "./ProfilePageNavBar";
 import { removeQuestion } from "../../store/questions";
 import EditQuestionModal from "../questions/EditQuestionModal"
+import EditAnswerModal from "../answers/EditAnswerModal";
 import './ProfilePage.css'
 
 function ProfilePage() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const questions = useSelector(state => state.questionsState)
+    const questionsArr = Object.values(questions)
+
     const [showAnswers, setShowAnswers] = useState(false)
     const [showQuestions, setShowQuestions] = useState(false)
 
@@ -53,7 +57,7 @@ function ProfilePage() {
                     </div >
                 )}
                 {showAnswers && (
-                    <div> Answers
+                    <div>
                         {
                             user.answers.map(answer => (
                                 <div key={answer.id} id='usersQuestionsContainer'>
@@ -61,8 +65,8 @@ function ProfilePage() {
                                     <div className="timeAndButtons">
                                         <p id='postedTime'>Posted: <span>{answer.createdAt.slice(5, 16)}</span></p>
                                         <div>
-                                            {/* <EditQuestionModal question={question} />
-                                            <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, question.id)}>Delete</button> */}
+                                            <EditAnswerModal user={user} answer={answer} questions={questionsArr} />
+                                            <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, answer.id)}>Delete</button>
                                         </div>
                                     </div>
                                 </div>

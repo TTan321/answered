@@ -8,7 +8,6 @@ function UsersQuestions() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
-    console.log('USER: ', user)
 
     useEffect(() => {
         dispatch(authenticate())
