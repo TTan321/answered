@@ -2,6 +2,7 @@
 const GET_ANSWERS = "answers/GET_ANSWERS"
 const ADD_ANSWER = "answers/ADD_ANSWER"
 const EDIT_ANSWER = "answer/EDIT_ANSWER"
+const DELETE_ANSWER = "answer/DELETE_ANSWER"
 
 // Actions
 const loadAnswers = answers => {
@@ -22,6 +23,13 @@ const updateAnswer = answer => {
     return {
         type: EDIT_ANSWER,
         answer
+    }
+}
+
+const removeAnswer = id => {
+    return {
+        type: DELETE_ANSWER,
+        id
     }
 }
 
@@ -61,6 +69,19 @@ export const editAnswer = answer => async dispatch => {
     }
 }
 
+export const deleteAnswer = id => async dispatch => {
+    const response = await fetch(`/api/answers/${id}`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(id)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeAnswer(data.id))
+        return { ...data }
+    }
+}
+
 // Reducer
 const answersReducer = (state = {}, action) => {
     switch (action.type) {
@@ -80,6 +101,11 @@ const answersReducer = (state = {}, action) => {
         case EDIT_ANSWER: {
             const newState = { ...state }
             newState[action.answer.id] = action.answer
+            return newState
+        }
+        case DELETE_ANSWER: {
+            const newState = { ...state }
+            delete newState[action.id]
             return newState
         }
         default: {
