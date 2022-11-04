@@ -50,13 +50,6 @@ def edit_question(question_id):
 def add_answer(question_id):
     form = AnswerForm()
     user = current_user.to_dict()
-    print(f"""
-    -------------------
-    -------------------,
-    {form.data},
-    ---------------------
-    ---------------------
-    """)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
         data = Answer(
