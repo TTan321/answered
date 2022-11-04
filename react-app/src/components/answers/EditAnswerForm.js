@@ -16,7 +16,7 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedAnswer === 0) validateErrors.push("Answer is required.");
+        if (editedAnswer.length === 0) validateErrors.push("Cannot post empty answer.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -26,10 +26,12 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
             'questionId': question.id
         }
 
-        await dispatch(editAnswer(payload))
-        await dispatch(getAnswers())
-        await dispatch(authenticate())
-        setShowModal(false);
+        if (editedAnswer.length > 0) {
+            await dispatch(editAnswer(payload))
+            await dispatch(getAnswers())
+            await dispatch(authenticate())
+            setShowModal(false);
+        }
 
     };
 
@@ -42,7 +44,7 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
                 <div>
                     <p id='answerFormQuestion'>{question.question}</p>
                 </div>
-                <form onSubmit={onSubmit} id=''>
+                <form onSubmit={(e) => onSubmit(e)} id=''>
                     <div className=''>
                         <label htmlFor="" />
                         <textarea
