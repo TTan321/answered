@@ -17,11 +17,17 @@ const SignUpForm = ({ setShowModal }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstname, lastname, username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+
+    let validateErrors = []
+    if (password !== repeatPassword) validateErrors.push('Passwords do not match.')
+    if (firstname.length > 50) validateErrors.push('Firstname cannot be greater than 50 characters.')
+    if (lastname.length > 50) validateErrors.push('Lastname cannot be greater than 50 characters.')
+    if (username.length > 50) validateErrors.push('Username cannot be greater than 50 characters.')
+    await setErrors(validateErrors)
+
+    if (errors.length === 0) {
+      await dispatch(signUp(username, email, password, firstname, lastname));
+      return <Redirect to='/' />;
     }
   };
 
@@ -54,89 +60,98 @@ const SignUpForm = ({ setShowModal }) => {
   }
 
   return (
-    <div id='signUpFormContainer'>
+    <>
       <div>
-        <div>
-          <i className="fas fa-times signup-cancel" onClick={() => setShowModal(false)}></i>
-          <h1 id='signUpTitle'>Sign Up</h1>
-        </div>
-        <form onSubmit={onSignUp} id='signUpForm'>
-          <div className='loginInputsDiv'>
-            <label>User Name</label>
-            <input
-              className='signUpInputs'
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-              placeholder='User Name'
-            ></input>
-          </div>
-          <div className='loginInputsDiv'>
-            <label>First Name</label>
-            <input
-              className='signUpInputs'
-              type='text'
-              name='firstname'
-              onChange={updateFirstname}
-              value={firstname}
-              placeholder='First Name'
-            ></input>
-          </div>
-          <div className='loginInputsDiv'>
-            <label>Last Name</label>
-            <input
-              className='signUpInputs'
-              type='text'
-              name='lastname'
-              onChange={updateLastname}
-              value={lastname}
-              placeholder='Last Name'
-            ></input>
-          </div>
-          <div className='loginInputsDiv'>
-            <label>Email</label>
-            <input
-              className='signUpInputs'
-              type='text'
-              name='email'
-              onChange={updateEmail}
-              value={email}
-              placeholder='Email'
-            ></input>
-          </div>
-          <div className='loginInputsDiv'>
-            <label>Password</label>
-            <input
-              className='signUpInputs'
-              type='password'
-              name='password'
-              onChange={updatePassword}
-              value={password}
-              placeholder='Password'
-            ></input>
-          </div>
-          <div className='loginInputsDiv'>
-            <label>Confirm Password</label>
-            <input
-              className='signUpInputs'
-              type='password'
-              name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              placeholder='Confirm Password'
-              required={true}
-            ></input>
-          </div>
-          <div id='errorsDiv'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <button className='signUpButton' type='submit'>Sign Up</button>
-        </form>
+        <i className="fas fa-times signup-cancel" onClick={() => setShowModal(false)}></i>
       </div>
-    </div>
+      <div id='signUpFormContainer'>
+        <div>
+          <div>
+            <h1 id='signUpTitle'>Sign Up</h1>
+          </div>
+          <form onSubmit={onSignUp} id='signUpForm'>
+            <div className='loginInputsDiv'>
+              <label>User Name</label>
+              <input
+                className='signUpInputs'
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                value={username}
+                placeholder='User Name'
+                required={true}
+              ></input>
+            </div>
+            <div className='loginInputsDiv'>
+              <label>First Name</label>
+              <input
+                className='signUpInputs'
+                type='text'
+                name='firstname'
+                onChange={updateFirstname}
+                value={firstname}
+                placeholder='First Name'
+                required={true}
+              ></input>
+            </div>
+            <div className='loginInputsDiv'>
+              <label>Last Name</label>
+              <input
+                className='signUpInputs'
+                type='text'
+                name='lastname'
+                onChange={updateLastname}
+                value={lastname}
+                placeholder='Last Name'
+                required={true}
+              ></input>
+            </div>
+            <div className='loginInputsDiv'>
+              <label>Email</label>
+              <input
+                className='signUpInputs'
+                type='email'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                placeholder='Email'
+                required={true}
+              ></input>
+            </div>
+            <div className='loginInputsDiv'>
+              <label>Password</label>
+              <input
+                className='signUpInputs'
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+                placeholder='Password'
+                required={true}
+              ></input>
+            </div>
+            <div className='loginInputsDiv'>
+              <label>Confirm Password</label>
+              <input
+                className='signUpInputs'
+                type='password'
+                name='repeat_password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                placeholder='Confirm Password'
+                required={true}
+              ></input>
+            </div>
+            <div id='errorsDiv'>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <button className='signUpButton' type='submit'>Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 
