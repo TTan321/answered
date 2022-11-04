@@ -72,6 +72,7 @@ export const editAnswer = answer => async dispatch => {
 }
 
 export const deleteAnswer = id => async dispatch => {
+    console.log('DELETE THUNK PAYLOAD: ', id)
     const response = await fetch(`/api/answers/${id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" },
@@ -79,6 +80,7 @@ export const deleteAnswer = id => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json();
+        console.log('DELETE THUNK RES DATA: ', data)
         dispatch(removeAnswer(data.id))
         return { ...data }
     }

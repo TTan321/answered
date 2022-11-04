@@ -34,7 +34,7 @@ function EditQuestionForm({ setShowModal, question }) {
                 <h1 id='questionFormTitle'>Edit Question</h1>
             </div>
             <form onSubmit={onSubmit} id='questionForm'>
-                <div className='questionDiv'>
+                <div className='addQuestionDiv'>
                     <label htmlFor="question" />
                     <textarea
                         className='questionTextbox'

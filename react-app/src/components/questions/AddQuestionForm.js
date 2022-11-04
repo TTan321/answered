@@ -32,7 +32,7 @@ function AddQuestionForm({ setShowModal, user }) {
                 <h1 id='questionFormTitle'>Add Question</h1>
             </div>
             <form onSubmit={onSubmit} id='questionForm'>
-                <div className='questionDiv'>
+                <div className='addQuestionDiv'>
                     <label htmlFor="question" />
                     <textarea
                         className='questionTextbox'

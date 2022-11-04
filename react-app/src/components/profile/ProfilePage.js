@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "../../store/session";
 import NavBar from "../navbar/NavBar";
 import ProfilePageNavBar from "./ProfilePageNavBar";
-import { removeQuestion } from "../../store/questions";
+import { loadQuestions, removeQuestion } from "../../store/questions";
 import EditQuestionModal from "../questions/EditQuestionModal"
 import EditAnswerModal from "../answers/EditAnswerModal";
+import { deleteAnswer } from "../../store/answers";
 import './ProfilePage.css'
 
 function ProfilePage() {
@@ -19,11 +20,18 @@ function ProfilePage() {
 
     useEffect(() => {
         dispatch(authenticate())
+        dispatch(loadQuestions())
     }, [dispatch])
 
     const deleteQuestion = async (e, id) => {
         e.preventDefault()
         await dispatch(removeQuestion(id))
+        await dispatch(authenticate())
+    }
+
+    const removeAnswer = async (e, id) => {
+        e.preventDefault()
+        await dispatch(deleteAnswer(id))
         await dispatch(authenticate())
     }
 
@@ -59,14 +67,14 @@ function ProfilePage() {
                 {showAnswers && (
                     <div>
                         {
-                            user.answers.map(answer => (
+                            user.answers.reverse().map(answer => (
                                 <div key={answer.id} id='usersQuestionsContainer'>
                                     <p className='usersQuestions'>{answer.answer}</p>
                                     <div className="timeAndButtons">
                                         <p id='postedTime'>Posted: <span>{answer.createdAt.slice(5, 16)}</span></p>
                                         <div>
                                             <EditAnswerModal user={user} answer={answer} questions={questionsArr} />
-                                            <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, answer.id)}>Delete</button>
+                                            <button className="delete modifyButtons" onClick={(e) => removeAnswer(e, answer.id)}>Delete</button>
                                         </div>
                                     </div>
                                 </div>
