@@ -32,8 +32,8 @@ function AddQuestionForm({ setShowModal, user }) {
 
     return (
         <div id='questionFormContainer'>
-            <div id='add-question-cancel-div'>
-                <i className="fas fa-times add-question-cancel" onClick={() => setShowModal(false)}></i>
+            <div id='add-question-cancel-div' onClick={() => setShowModal(false)}>
+                <i className="fas fa-times add-question-cancel"></i>
             </div>
             <div>
                 <h1 id='questionFormTitle'>Add Question</h1>
