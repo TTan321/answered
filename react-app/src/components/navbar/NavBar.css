@@ -9,3 +9,8 @@
     background-color: white;
     position: fixed;
 }
+
+.logo {
+    height: 50px;
+    width: 100px;
+}
