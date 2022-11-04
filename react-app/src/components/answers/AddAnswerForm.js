@@ -28,29 +28,36 @@ function AddAnswerForm({ user, setShowModal, question }) {
     };
 
     return (
-        <div id=''>
-            <div>
-                <h1 id=''>Add Answer</h1>
+        <div id='addAnswerFormContainer'>
+            <div id='addAnswerXDiv'>
+                <i class="fas fa-times"></i>
             </div>
-            <form onSubmit={onSubmit} id='questionForm'>
-                <div className=''>
-                    <label htmlFor="" />
-                    <textarea
-                        className=''
-                        rows="9"
-                        cols="60"
-                        value={answer}
-                        placeholder="Type Question here"
-                        onChange={(e) => setAnswer(e.target.value)}>
-                    </textarea>
-                    <div className='questionErrorsDiv'>
-                        {errors.map((error, idx) => (
-                            <p key={idx} >{error}</p>
-                        ))}
-                    </div>
-                    <button className='' type="submit">Submit Answer</button>
+            <div id='belowAnswerXDiv'>
+                <div>
+                    <p id='answerFormQuestion'>{question.question}</p>
                 </div>
-            </form>
+                <form onSubmit={onSubmit} id=''>
+                    <div className=''>
+                        <label htmlFor="" />
+                        <textarea
+                            className=''
+                            rows="9"
+                            cols="60"
+                            value={answer}
+                            placeholder="Write answer here"
+                            onChange={(e) => setAnswer(e.target.value)}>
+                        </textarea>
+                        <div className='answersErrorsDiv'>
+                            {errors.map((error, idx) => (
+                                <p key={idx} >{error}</p>
+                            ))}
+                        </div>
+                        <div className='postButtonDiv'>
+                            <button className='postButton' type="submit">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
