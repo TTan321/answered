@@ -48,14 +48,13 @@
 }
 
 .submitQuestion {
-    background-color: #2e69ff;
+    background-color: rgb(46, 105, 255, 0.5);
     color: white;
     font-weight: bold;
-    height: 38px;
+    height: 30px;
+    width: 140px;
     border: none;
     border-radius: 25px;
-    margin-top: 10px;
-    width: 100%;
     cursor: pointer;
 }
 

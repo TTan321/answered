@@ -54,7 +54,9 @@ function EditQuestionForm({ setShowModal, question }) {
                             <p key={idx} >{error}</p>
                         ))}
                     </div>
-                    <button className='submitQuestion' type="submit">Submit Question</button>
+                    <div className='postButtonDiv'>
+                        <button className='submitQuestion' type="submit">Submit Question</button>
+                    </div>
                 </div>
             </form>
         </div>
