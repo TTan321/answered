@@ -54,6 +54,20 @@ function ProfilePage() {
                 )}
                 {showAnswers && (
                     <div> Answers
+                        {
+                            user.answers.map(answer => (
+                                <div key={answer.id} id='usersQuestionsContainer'>
+                                    <p className='usersQuestions'>{answer.answer}</p>
+                                    <div className="timeAndButtons">
+                                        <p id='postedTime'>Posted: <span>{answer.createdAt.slice(5, 16)}</span></p>
+                                        <div>
+                                            {/* <EditQuestionModal question={question} />
+                                            <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, question.id)}>Delete</button> */}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                 )}
             </div>
