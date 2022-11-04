@@ -35,6 +35,7 @@ const removeAnswer = id => {
 
 // Thunks
 export const getAnswers = () => async dispatch => {
+
     const response = await fetch('/api/answers')
     if (response.ok) {
         const data = await response.json()
@@ -44,7 +45,8 @@ export const getAnswers = () => async dispatch => {
 }
 
 export const addAnswer = answer => async dispatch => {
-    const response = await fetch(`/api/answers`, {
+    console.log('THUNK ANSWER PAYLOAD: ', answer)
+    const response = await fetch(`/api/questions/${answer.question_id}/answer`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answer)
@@ -94,7 +96,7 @@ const answersReducer = (state = {}, action) => {
         }
         case ADD_ANSWER: {
             const newAnswer = {}
-            newState[action.answer.id] = action.answer
+            newAnswer[action.answer.id] = action.answer
             const newState = { ...state, ...newAnswer }
             return newState
         }

@@ -35,7 +35,7 @@ function QuestionDetailsPage() {
                         <p className="questionText">{currentQuestion.question}</p>
                     </div>
                     <div className="interactionDiv">
-                        <AddAnswerModal question={currentQuestion} />
+                        <AddAnswerModal question={currentQuestion} user={user} />
                     </div>
                 </div>
                 <div className="answerAmount">

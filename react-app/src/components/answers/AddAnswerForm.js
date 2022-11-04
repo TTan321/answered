@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addAnswer } from '../../store/answers';
+import { addAnswer, getAnswers } from '../../store/answers';
 import { loadQuestions, postQuestion } from '../../store/questions'
 import './AddAnswerForm.css'
 
@@ -18,11 +18,12 @@ function AddAnswerForm({ user, setShowModal, question }) {
 
         const payload = {
             'answer': answer,
-            'userId': user.id,
-            'questionId': question.id
+            'user_id': user.id,
+            'question_id': question.id
         }
 
         await dispatch(addAnswer(payload))
+        await dispatch(getAnswers())
         setShowModal(false);
 
     };
