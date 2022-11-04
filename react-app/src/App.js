@@ -8,6 +8,7 @@ import { authenticate } from './store/session';
 import Homepage from './components/homepage/Homepage';
 import UsersQuestions from './components/questions/UsersQuestions';
 import ProfilePage from './components/profile/ProfilePage';
+import QuestionDetailsPage from './components/questions/QuestionsDetailsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <Homepage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/question/:questionId' exact={true} >
+          <QuestionDetailsPage />
         </ProtectedRoute>
         <ProtectedRoute path='/user/:userId' exact={true} >
           <ProfilePage />

@@ -43,3 +43,8 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.question:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

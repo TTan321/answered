@@ -1,0 +1,24 @@
+#questionDetailPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#questionDetailPage {
+    margin-top: 70px;
+}
+
+.questionDiv {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 628px;
+    height: max-content;
+    padding: 0 16px;
+    padding-top: 16px;
+}
+
+.questionText {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+}

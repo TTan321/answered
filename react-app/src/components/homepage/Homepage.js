@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { loadQuestions } from "../../store/questions";
 import { authenticate } from "../../store/session";
 import NavBar from "../navbar/NavBar";
@@ -9,6 +10,7 @@ import './Homepage.css'
 
 function Homepage() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector(state => state.session.user)
     const questions = useSelector(state => state.questionsState)
     const questionsArr = Object.values(questions)
@@ -32,7 +34,7 @@ function Homepage() {
                                     <span className="date">{question.createdAt.slice(5, 16)}</span><br />
                                 </div>
                             </div>
-                            <div className="question">
+                            <div className="question" onClick={() => history.push(`/question/${question.id}`)}>
                                 {question.question}
                             </div>
                         </div>
