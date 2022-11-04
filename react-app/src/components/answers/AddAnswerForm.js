@@ -14,7 +14,7 @@ function AddAnswerForm({ user, setShowModal, question }) {
         e.preventDefault();
 
         const validateErrors = [];
-        if (answer === 0) validateErrors.push("Answer is required.");
+        if (answer.length === 0) validateErrors.push("Cannot post empty answer.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -23,9 +23,11 @@ function AddAnswerForm({ user, setShowModal, question }) {
             'question_id': question.id
         }
 
-        await dispatch(addAnswer(payload))
-        await dispatch(getAnswers())
-        setShowModal(false);
+        if (answer.length > 0) {
+            await dispatch(addAnswer(payload))
+            await dispatch(getAnswers())
+            setShowModal(false);
+        }
 
     };
 
