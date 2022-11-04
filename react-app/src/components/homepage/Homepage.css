@@ -43,3 +43,19 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.question:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#homepageQuestionAnswersDiv {
+    margin-top: 15px;
+    height: 100px;
+}
+
+.loginLogo {
+    margin-top: 5px;
+    height: 60px;
+    width: 170px;
+}

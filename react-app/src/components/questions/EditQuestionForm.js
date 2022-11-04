@@ -13,7 +13,7 @@ function EditQuestionForm({ setShowModal, question }) {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedQuestion === 0) validateErrors.push("Question is required.");
+        if (editedQuestion.length === 0) validateErrors.push("Cannot post empty question.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -22,19 +22,24 @@ function EditQuestionForm({ setShowModal, question }) {
             'questionId': question.id
         }
 
-        await dispatch(modifyQuestion(payload))
-        await dispatch(authenticate())
-        setShowModal(false);
+        if (editedQuestion.length > 0) {
+            await dispatch(modifyQuestion(payload))
+            await dispatch(authenticate())
+            setShowModal(false);
+        }
 
     };
 
     return (
         <div id='questionFormContainer'>
+            <div id='add-question-cancel-div' onClick={() => setShowModal(false)}>
+                <i className="fas fa-times add-question-cancel"></i>
+            </div>
             <div>
                 <h1 id='questionFormTitle'>Edit Question</h1>
             </div>
             <form onSubmit={onSubmit} id='questionForm'>
-                <div className='questionDiv'>
+                <div className='addQuestionDiv'>
                     <label htmlFor="question" />
                     <textarea
                         className='questionTextbox'
@@ -49,7 +54,9 @@ function EditQuestionForm({ setShowModal, question }) {
                             <p key={idx} >{error}</p>
                         ))}
                     </div>
-                    <button className='submitQuestion' type="submit">Submit Question</button>
+                    <div className='postButtonDiv'>
+                        <button className='submitQuestion' type="submit">Submit Question</button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import AddQuestionModal from '../questions/AddQuestionModal';
 import './ProfileButton.css'
@@ -33,8 +33,13 @@ function ProfileButton({ user }) {
             </div>
             {showMenu && (
                 <ul className="profile-details">
-                    <li className="profile-details-li" onClick={() => history.push(`/user/${user.id}`)} >
-                        <div>{user.firstname} {user.lastname}</div>
+                    <li className="profile-details-li navbar-name" onClick={() => history.push(`/user/${user.id}`)} >
+                        <div>
+                            <div id='navbarNoImageIcon'>
+                                {user.firstname.slice(0, 1).toUpperCase()}
+                            </div>
+                            <div>{user.firstname} {user.lastname}</div>
+                        </div>
                     </li>
                     {/* <li className="profile-details-li" onClick={() => history.push(`/users/${user.id}/questions`)}>
                         My Questions
