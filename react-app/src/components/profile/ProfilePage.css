@@ -81,9 +81,16 @@
 #questionForAnswersDiv {
     margin-top: 10px;
     margin-bottom: 30px;
+    font-size: 18px;
     font-weight: bold;
     border-bottom: 1px solid lightgray;
     padding: 10px;
+}
+
+.usersAnswers {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 0 10px;
 }
 
 .modifyButtons {

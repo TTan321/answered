@@ -83,7 +83,7 @@ function ProfilePage() {
                                     <div id='questionForAnswersDiv'>
                                         {getQuestionForAnswers(answer.questionId)}
                                     </div>
-                                    <p className='usersQuestions'>{answer.answer}</p>
+                                    <p className='usersAnswers'>{answer.answer}</p>
                                     <div className="timeAndButtons">
                                         <p id='postedTime'><span id='posted'>Posted: </span><span id='date'>{answer.createdAt.slice(5, 16)}</span></p>
                                         <div>
