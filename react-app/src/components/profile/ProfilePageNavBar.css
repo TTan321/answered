@@ -2,6 +2,24 @@
     display: flex;
     justify-content: space-evenly;
     width: 572px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     margin-bottom: 40px;
+}
+
+.profileNavFilters {
+    cursor: pointer;
+    margin: 0;
+    height: 45px;
+    padding: 0 10px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.profileNavFilters:hover {
+    background-color: rgb(211, 211, 211, 0.2);
 }

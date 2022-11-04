@@ -2,15 +2,15 @@
 
 import './ProfilePageNavBar.css'
 
-function ProfilePageNavBar({ setShowAnswers, setShowQuestions }) {
+function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions }) {
 
-    const showAnswers = (e) => {
+    const displayAnswers = (e) => {
         e.preventDefault()
         setShowQuestions(false)
         setShowAnswers(true)
     }
 
-    const showQuestions = (e) => {
+    const displayQuestions = (e) => {
         e.preventDefault()
         setShowAnswers(false)
         setShowQuestions(true)
@@ -18,13 +18,21 @@ function ProfilePageNavBar({ setShowAnswers, setShowQuestions }) {
 
     return (
         <div id='profilePageSelections'>
-            <p onClick={(e) => showAnswers(e)}>
-                Answers
+            <p
+                className='profileNavFilters'
+                onClick={(e) => displayAnswers(e)}
+                style={showAnswers ? { color: 'red', borderBottom: '1px solid red' } : {}}
+            >
+                {user.answers.length} Answers
             </p>
-            <p onClick={(e) => showQuestions(e)}>
-                Questions
+            <p
+                className='profileNavFilters'
+                onClick={(e) => displayQuestions(e)}
+                style={showQuestions ? { color: 'red', borderBottom: '1px solid red' } : {}}
+            >
+                {user.questions.length} Questions
             </p>
-        </div>
+        </div >
     )
 }
 

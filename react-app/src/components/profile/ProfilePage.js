@@ -31,7 +31,7 @@ function ProfilePage() {
                 <div id='usersProfileName'>{user.firstname} {user.lastname}</div>
             </div>
             <div>
-                <ProfilePageNavBar setShowAnswers={setShowAnswers} setShowQuestions={setShowQuestions} />
+                <ProfilePageNavBar user={user} setShowAnswers={setShowAnswers} setShowQuestions={setShowQuestions} showAnswers={showAnswers} showQuestions={showQuestions} />
             </div>
             <div>
                 {showQuestions && (
