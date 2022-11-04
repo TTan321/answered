@@ -37,6 +37,9 @@ function Homepage() {
                             <div className="question" onClick={() => history.push(`/question/${question.id}`)}>
                                 {question.question}
                             </div>
+                            <div id='homepageQuestionAnswersDiv'>
+                                {question.answers.length ? question.answers[0].answer : 'No answers yet'}
+                            </div>
                         </div>
                     ))
                 }

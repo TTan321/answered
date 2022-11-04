@@ -48,3 +48,8 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+#homepageQuestionAnswersDiv {
+    margin-top: 15px;
+    height: 100px;
+}
