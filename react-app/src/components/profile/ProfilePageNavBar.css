@@ -2,8 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     width: 572px;
-    border-bottom: 1px solid gray;
-    margin-bottom: 40px;
+    border-bottom: 1px solid lightgray;
 }
 
 .profileNavFilters {

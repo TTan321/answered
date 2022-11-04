@@ -29,11 +29,19 @@
     font-size: 40px;
 }
 
+.filterCountDiv {
+    border-bottom: 1px solid lightgray;
+    height: 30px;
+    width: 572px;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 #usersQuestionsContainer {
     border: 1px solid lightgray;
     height: 100px;
-    width: 552px;
-    padding: 10px;
+    width: 572px;
     margin-bottom: 30px;
     overflow-wrap: normal;
     height: max-content;
@@ -43,7 +51,8 @@
 .usersQuestions {
     font-size: 20px;
     font-weight: bold;
-    margin: 0;
+    margin-top: 10px;
+    padding: 0 10px;
 }
 
 .timeAndButtons {
@@ -51,10 +60,30 @@
     align-items: flex-end;
     justify-content: space-between;
     margin-top: 15px;
+    padding: 0 10px;
+    padding-bottom: 10px;
 }
 
 #postedTime {
     margin: 0;
+}
+
+#posted {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#date {
+    font-size: 14px;
+    color: gray;
+}
+
+#questionForAnswersDiv {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
 }
 
 .modifyButtons {

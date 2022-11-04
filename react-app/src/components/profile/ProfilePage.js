@@ -35,6 +35,11 @@ function ProfilePage() {
         await dispatch(authenticate())
     }
 
+    const getQuestionForAnswers = (questionId) => {
+        const question = questionsArr.find(question => question.id === questionId)
+        return question.question
+    }
+
     return user && (
         <div id='profilePage'>
             <NavBar user={user} />
@@ -48,12 +53,15 @@ function ProfilePage() {
             <div>
                 {showQuestions && (
                     <div>
+                        <div className="filterCountDiv">
+                            {user.questions.length} Questions
+                        </div>
                         {
                             user.questions.map(question => (
                                 <div key={question.id} id='usersQuestionsContainer'>
                                     <p className='usersQuestions'>{question.question}</p>
                                     <div className="timeAndButtons">
-                                        <p id='postedTime'>Posted: <span>{question.createdAt.slice(5, 16)}</span></p>
+                                        <p id='postedTime'><span id='posted'>Posted: </span><span id='date'>{question.createdAt.slice(5, 16)}</span></p>
                                         <div>
                                             <EditQuestionModal question={question} />
                                             <button className="delete modifyButtons" onClick={(e) => deleteQuestion(e, question.id)}>Delete</button>
@@ -66,12 +74,18 @@ function ProfilePage() {
                 )}
                 {showAnswers && (
                     <div>
+                        <div className="filterCountDiv">
+                            {user.answers.length} Answers
+                        </div>
                         {
                             user.answers.reverse().map(answer => (
                                 <div key={answer.id} id='usersQuestionsContainer'>
+                                    <div id='questionForAnswersDiv'>
+                                        {getQuestionForAnswers(answer.questionId)}
+                                    </div>
                                     <p className='usersQuestions'>{answer.answer}</p>
                                     <div className="timeAndButtons">
-                                        <p id='postedTime'>Posted: <span>{answer.createdAt.slice(5, 16)}</span></p>
+                                        <p id='postedTime'><span id='posted'>Posted: </span><span id='date'>{answer.createdAt.slice(5, 16)}</span></p>
                                         <div>
                                             <EditAnswerModal user={user} answer={answer} questions={questionsArr} />
                                             <button className="delete modifyButtons" onClick={(e) => removeAnswer(e, answer.id)}>Delete</button>

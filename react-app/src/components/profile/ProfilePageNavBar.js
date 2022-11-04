@@ -1,5 +1,3 @@
-
-import { useState } from 'react'
 import './ProfilePageNavBar.css'
 
 function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions }) {
@@ -18,7 +16,7 @@ function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, s
 
     const filterStyles = {
         color: 'red',
-        borderBottom: '1px solid red',
+        borderBottom: '2px solid red',
     }
 
     return (
