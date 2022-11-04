@@ -1,3 +1,8 @@
 .addAnswer {
     font-weight: bold;
+    color: grey;
+}
+
+.fa-pen-square {
+    color: rgb(46, 105, 255);
 }
