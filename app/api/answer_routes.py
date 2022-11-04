@@ -10,7 +10,7 @@ answer_routes = Blueprint('answers', __name__)
 @answer_routes.route('')
 def get_answers():
     answers = Answer.query.all()
-    return {'answers': [answer.to_dict_answer for answer in answers]}
+    return {'answers': [answer.to_dict_answer_rel() for answer in answers]}
 
 # Edit an answer by answer id
 @answer_routes.route('/<int:answer_id>', methods=['PUT'])
@@ -22,7 +22,7 @@ def edit_answer(answer_id):
         answer.answer = form.data['answer']
         answer.updated_at = date.today()
         db.session.commit()
-        return {'answer': answer.to_dict_answer()}
+        return {'answer': answer.to_dict_answer_rel()}
     return form.errors
 
 #  Delete an answer by answer id

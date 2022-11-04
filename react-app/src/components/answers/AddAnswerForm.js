@@ -29,8 +29,8 @@ function AddAnswerForm({ user, setShowModal, question }) {
 
     return (
         <div id='addAnswerFormContainer'>
-            <div id='addAnswerXDiv'>
-                <i class="fas fa-times"></i>
+            <div id='addAnswerXDiv' onClick={() => setShowModal(false)}>
+                <i className="fas fa-times"></i>
             </div>
             <div id='belowAnswerXDiv'>
                 <div>

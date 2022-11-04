@@ -57,7 +57,7 @@ const SignUpForm = ({ setShowModal }) => {
     <div id='signUpFormContainer'>
       <div>
         <div>
-          <i class="fas fa-times signup-cancel" onClick={() => setShowModal(false)}></i>
+          <i className="fas fa-times signup-cancel" onClick={() => setShowModal(false)}></i>
           <h1 id='signUpTitle'>Sign Up</h1>
         </div>
         <form onSubmit={onSignUp} id='signUpForm'>

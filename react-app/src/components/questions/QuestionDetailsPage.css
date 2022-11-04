@@ -50,3 +50,28 @@
 .answerDiv:hover {
     background-color: rgb(211, 211, 211, 0.3);
 }
+
+.answerAmount {
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.answersContainer {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 628px;
+    margin-bottom: 15px;
+}
+
+.answerProfileDiv {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.answerTextDiv {
+    padding: 10px;
+}

@@ -59,7 +59,7 @@ def add_answer():
         )
         db.session.add(data)
         db.session.commit()
-        return {'answer': data.to_dict_answer()}
+        return {'answer': data.to_dict_answer_rel()}
     return form.errors
 
 # Delete a question
