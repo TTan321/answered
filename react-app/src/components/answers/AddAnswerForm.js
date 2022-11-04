@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addAnswer, getAnswers } from '../../store/answers';
-import { loadQuestions, postQuestion } from '../../store/questions'
 import './AddAnswerForm.css'
 
 function AddAnswerForm({ user, setShowModal, question }) {

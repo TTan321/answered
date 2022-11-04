@@ -17,7 +17,7 @@ function QuestionDetailsPage() {
     const answers = useSelector(state => state.answersState)
     const filteredAnswers = Object.values(answers).filter(answer => answer.questionId === +questionId)
 
-    console.log('ANSWERS: ', filteredAnswers)
+    // console.log('ANSWERS: ', filteredAnswers)
     // console.log('CURRENT QUESTION: ', currentQuestion)
 
     useEffect(() => {

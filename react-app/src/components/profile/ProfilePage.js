@@ -52,6 +52,10 @@ function ProfilePage() {
                         }
                     </div >
                 )}
+                {showAnswers && (
+                    <div> Answers
+                    </div>
+                )}
             </div>
         </div >
     )
