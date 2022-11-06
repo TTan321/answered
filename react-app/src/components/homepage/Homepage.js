@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { loadQuestions } from "../../store/questions";
 import { authenticate } from "../../store/session";
+import About from "../about/About";
 import NavBar from "../navbar/NavBar";
 import './Homepage.css'
 
@@ -25,26 +26,29 @@ function Homepage() {
     return Object.values(user).length > 0 && questionsArr.length > 0 && (
         <div id='homepage'>
             <NavBar user={user} />
-            <div id='questionsFeed'>
-                {
-                    questionsArr.reverse().map(question => (
-                        <div key={question.id} className='questionsContainer'>
-                            <div className="questionUser">
-                                <i className="fas fa-user-circle fa-2x" />
-                                <div className="questionUserInfo">
-                                    <span className="name">{question.user.firstname} {question.user.lastname}</span><br />
-                                    <span className="date">{question.createdAt.slice(5, 16)}</span><br />
+            <div id='homepageBelowNav'>
+                <div id='questionsFeed'>
+                    {
+                        questionsArr.reverse().map(question => (
+                            <div key={question.id} className='questionsContainer'>
+                                <div className="questionUser">
+                                    <i className="fas fa-user-circle fa-2x" />
+                                    <div className="questionUserInfo">
+                                        <span className="name">{question.user.firstname} {question.user.lastname}</span><br />
+                                        <span className="date">{question.createdAt.slice(5, 16)}</span><br />
+                                    </div>
+                                </div>
+                                <div className="question" onClick={() => history.push(`/question/${question.id}`)}>
+                                    {question.question}
+                                </div>
+                                <div id='homepageQuestionAnswersDiv'>
+                                    {question.answers.length ? question.answers[0].answer : 'No answers yet'}
                                 </div>
                             </div>
-                            <div className="question" onClick={() => history.push(`/question/${question.id}`)}>
-                                {question.question}
-                            </div>
-                            <div id='homepageQuestionAnswersDiv'>
-                                {question.answers.length ? question.answers[0].answer : 'No answers yet'}
-                            </div>
-                        </div>
-                    ))
-                }
+                        ))
+                    }
+                </div>
+                <About />
             </div>
         </div>
     )

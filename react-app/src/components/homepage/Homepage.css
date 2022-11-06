@@ -6,6 +6,10 @@
     height: max-content;
 }
 
+#homepageBelowNav {
+    display: flex;
+}
+
 #questionsFeed {
     width: 568px;
     padding-top: 85px;
@@ -59,4 +63,8 @@
     margin-top: 5px;
     height: 60px;
     width: 170px;
+}
+
+.fa-user-circle {
+    color: rgb(46, 105, 255, 0.8);
 }
