@@ -5,8 +5,17 @@
 }
 
 .navProfileIcon {
-    padding-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 45px;
+    margin-right: 10px;
     cursor: pointer;
+}
+
+.navProfileIcon:hover {
+    background-color: rgb(211, 211, 211, 0.3);
 }
 
 .profile-dropdown {

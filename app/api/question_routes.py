@@ -42,7 +42,7 @@ def edit_question(question_id):
         question.question = form.data['question']
         question.updated_at = date.today()
         db.session.commit()
-        return {'question': question.to_dict_question()}
+        return {'question': question.to_dict_question_rel()}
     return form.errors
 
 # Add an answer to a question

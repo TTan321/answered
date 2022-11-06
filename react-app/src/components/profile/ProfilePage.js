@@ -26,12 +26,14 @@ function ProfilePage() {
     const deleteQuestion = async (e, id) => {
         e.preventDefault()
         await dispatch(removeQuestion(id))
+        await dispatch(loadQuestions())
         await dispatch(authenticate())
     }
 
     const removeAnswer = async (e, id) => {
         e.preventDefault()
         await dispatch(deleteAnswer(id))
+        await dispatch(loadQuestions())
         await dispatch(authenticate())
     }
 
