@@ -32,11 +32,12 @@
 .questionsContainer {
     background-color: white;
     margin-bottom: 15px;
-    height: 190px;
+    height: max-content;
     width: 536px;
     padding: 16px 16px;
     border-radius: 5px;
     border: 1px solid lightgray;
+    overflow-wrap: break-word;
 }
 
 .question {
@@ -50,8 +51,8 @@
 }
 
 #homepageQuestionAnswersDiv {
-    margin-top: 15px;
-    height: 100px;
+    margin-top: 35px;
+    height: max-content;
 }
 
 .loginLogo {
