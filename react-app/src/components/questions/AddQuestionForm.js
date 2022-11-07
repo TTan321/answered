@@ -21,11 +21,16 @@ function AddQuestionForm({ setShowModal, user }) {
         }
 
         if (question.length > 0) {
-            await dispatch(postQuestion(payload))
-            await dispatch(loadQuestions())
-            setShowModal(false);
+            const data = await dispatch(postQuestion(payload))
+            if (data) {
+                await setErrors(data)
+            }
         }
 
+        if (errors.length === 0) {
+            await dispatch(loadQuestions())
+            // setShowModal(false);
+        }
 
 
     };
