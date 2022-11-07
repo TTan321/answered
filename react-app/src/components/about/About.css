@@ -1,0 +1,24 @@
+#aboutContainer {
+    width: 150px;
+    height: max-content;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 85px;
+    margin-left: 30px;
+}
+
+#linkContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutLinks {
+    padding: 7px 10px;
+    text-decoration: none;
+    color: gray;
+}
+
+.aboutLinks:hover {
+    background-color: rgb(211, 211, 211, 0.3);
+}

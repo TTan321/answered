@@ -7,6 +7,16 @@ from datetime import date
 
 question_routes = Blueprint('questions', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field.title()} {error}')
+    return errorMessages
+
 # Get all questions
 @question_routes.route('')
 def get_questions():
@@ -29,7 +39,7 @@ def add_question():
         db.session.add(data)
         db.session.commit()
         return {'question': data.to_dict_question_rel()}
-    return form.errors
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Edit a question
@@ -42,8 +52,8 @@ def edit_question(question_id):
         question.question = form.data['question']
         question.updated_at = date.today()
         db.session.commit()
-        return {'question': question.to_dict_question()}
-    return form.errors
+        return {'question': question.to_dict_question_rel()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Add an answer to a question
 @question_routes.route('/<int:question_id>/answer', methods=['POST'])
@@ -60,7 +70,7 @@ def add_answer(question_id):
         db.session.add(data)
         db.session.commit()
         return {'answer': data.to_dict_answer_rel()}
-    return form.errors
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Delete a question
 @question_routes.route('/<int:question_id>', methods=['DELETE'])

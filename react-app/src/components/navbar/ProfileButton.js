@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
+import { useDispatch } from 'react-redux';
+// import LogoutButton from '../auth/LogoutButton';
+import { logout } from '../../store/session'
 import AddQuestionModal from '../questions/AddQuestionModal';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
 
@@ -24,6 +25,11 @@ function ProfileButton({ user }) {
         document.addEventListener('click', closeMenu);
         return () => document.removeEventListener('click', closeMenu);
     }, [showMenu])
+
+    const runLogout = async (e) => {
+        e.preventDefault()
+        await dispatch(logout())
+    }
 
     return (
         <div>
@@ -44,8 +50,9 @@ function ProfileButton({ user }) {
                     {/* <li className="profile-details-li" onClick={() => history.push(`/users/${user.id}/questions`)}>
                         My Questions
                     </li> */}
-                    <li className="profile-details-li">
-                        <LogoutButton />
+                    <li className="profile-details-li" onClick={(e) => runLogout(e)}>
+                        {/* <LogoutButton /> */}
+                        Logout
                     </li>
                 </ul>
             )
