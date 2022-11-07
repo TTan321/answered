@@ -48,7 +48,7 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
                     <div className=''>
                         <label htmlFor="" />
                         <textarea
-                            className=''
+                            className='answeresTextarea'
                             rows="9"
                             cols="60"
                             value={editedAnswer}

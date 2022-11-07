@@ -44,7 +44,7 @@ function AddAnswerForm({ user, setShowModal, question }) {
                     <div className=''>
                         <label htmlFor="" />
                         <textarea
-                            className=''
+                            className='answeresTextarea'
                             rows="9"
                             cols="60"
                             value={answer}
