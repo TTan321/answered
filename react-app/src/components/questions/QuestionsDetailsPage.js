@@ -18,7 +18,7 @@ function QuestionDetailsPage() {
     const filteredAnswers = Object.values(answers).filter(answer => answer.questionId === +questionId)
 
     // console.log('ANSWERS: ', filteredAnswers)
-    // console.log('CURRENT QUESTION: ', currentQuestion)
+    console.log('CURRENT QUESTION: ', currentQuestion)
 
     useEffect(() => {
         dispatch(authenticate())
@@ -34,13 +34,28 @@ function QuestionDetailsPage() {
                     <div className="questiontextDiv">
                         <p className="questionText">{currentQuestion.question}</p>
                     </div>
-                    <div className="interactionDiv">
-                        <AddAnswerModal question={currentQuestion} user={user} />
-                    </div>
+                    {user.id !== currentQuestion.userId && (
+                        < div className="interactionDiv">
+                            <AddAnswerModal question={currentQuestion} user={user} />
+                        </div>
+                    )
+                    }
                 </div>
                 <div className="answerAmount">
                     <p>{filteredAnswers.length} Answers</p>
                 </div>
+                {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
+                    < div className="noAnswersDiv">
+                        <div id='answerCanYou'>
+                            {user.firstname}, can you answer this question?
+                            <AddAnswerModal question={currentQuestion} user={user} />
+                        </div>
+                        <div>
+                            No answers yet.
+                        </div>
+                    </div>
+                )
+                }
                 <div id='answerFeedDiv'>
                     {
                         filteredAnswers.map(answer => (
@@ -57,7 +72,7 @@ function QuestionDetailsPage() {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

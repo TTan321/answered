@@ -1,18 +1,32 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loadQuestions, postQuestion } from '../../store/questions'
+import { authenticate } from '../../store/session'
 import './AddQuestionForm.css'
 
 function AddQuestionForm({ setShowModal, user }) {
     const dispatch = useDispatch()
     const [question, setQuestion] = useState('');
+    const [chars, setChars] = useState(0)
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        setChars(question.trim().length)
+    }, [question])
+
+    // const submitQuestion = (e) => {
+    //     e.preventDefault()
+    //     setQuestion(e.target.value)
+    //     setChars(question.trim().length)
+    // }
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (question.length === 0) validateErrors.push("Cannot post empty question.");
+        if (question.trim().length === 0) validateErrors.push("Cannot post empty question.");
+        if (question.length < 30 || question.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -20,14 +34,18 @@ function AddQuestionForm({ setShowModal, user }) {
             'userId': user.id
         }
 
-        if (question.length > 0) {
+        // console.log("DATA: ", data)
+        // if (data) {
+        //     console.log("ERRORS: ", errors)
+        //     await setErrors(data)
+        // }
+
+        if (question.trim().length > 29 && question.trim().length < 251) {
             await dispatch(postQuestion(payload))
             await dispatch(loadQuestions())
+            await dispatch(authenticate())
             setShowModal(false);
         }
-
-
-
     };
 
     return (
@@ -49,6 +67,9 @@ function AddQuestionForm({ setShowModal, user }) {
                         placeholder="Type Question here"
                         onChange={(e) => setQuestion(e.target.value)}>
                     </textarea>
+                    <div id='charLimitsOutDiv'>
+                        <div id='charLimits'>({chars}/250)</div>
+                    </div>
                     <div className='questionErrorsDiv'>
                         {errors.map((error, idx) => (
                             <p key={idx} >{error}</p>

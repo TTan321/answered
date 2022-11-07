@@ -18,6 +18,7 @@
 .questiontextDiv {
     padding: 0 16px;
     padding-top: 16px;
+    padding-bottom: 10px;
 }
 
 .questionText {
@@ -74,4 +75,23 @@
 
 .answerTextDiv {
     padding: 10px;
+}
+
+.noAnswersDiv {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+#answerCanYou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 25px;
+    row-gap: 10px;
 }

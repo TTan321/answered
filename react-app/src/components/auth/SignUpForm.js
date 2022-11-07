@@ -29,19 +29,35 @@ const SignUpForm = ({ setShowModal }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
 
-    let validateErrors = []
-    if (username.length > 20) validateErrors.push('Username cannot be greater than 20 characters.')
-    if (username.length < 4) validateErrors.push('Username cannot be less than 4 characters.')
-    if (firstname.length > 20) validateErrors.push('Firstname cannot be greater than 20 characters.')
-    if (lastname.length > 20) validateErrors.push('Lastname cannot be greater than 20 characters.')
-    if (password.length < 6) validateErrors.push('Password length needs to be atleast 6 characters')
-    if (password !== repeatPassword) validateErrors.push('Passwords do not match.')
-    setErrors(validateErrors)
+    // let validateErrors = []
+    // if (username.length > 20) validateErrors.push('Username cannot be greater than 20 characters.')
+    // if (username.length < 4) validateErrors.push('Username cannot be less than 4 characters.')
+    // if (firstname.length > 20) validateErrors.push('Firstname cannot be greater than 20 characters.')
+    // if (lastname.length > 20) validateErrors.push('Lastname cannot be greater than 20 characters.')
+    // if (password.length < 6) validateErrors.push('Password length needs to be atleast 6 characters')
+    // if (password !== repeatPassword) validateErrors.push('Passwords do not match.')
+    // setErrors(validateErrors)
 
-    if (errors.length === 0) {
-      await dispatch(signUp(username, email, password, firstname, lastname));
-      return <Redirect to='/' />;
+    // if (errors.length === 0) {
+    //   const data = await dispatch(signUp(username, email, password, firstname, lastname));
+    //   if (data) {
+    //     setErrors(data)
+    //     return;
+    //   }
+    //   return <Redirect to='/' />;
+    // }
+
+    if (!email.includes('@')) {
+      return setErrors(['Please provide a valid email'])
     }
+    if (password === repeatPassword) {
+      const data = await dispatch(signUp(username, email, password, firstname, lastname));
+      if (data) {
+        setErrors(data)
+      }
+      return;
+    }
+    return setErrors(['Password fields must match'])
   };
 
   const updateUsername = (e) => {
