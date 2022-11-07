@@ -11,12 +11,18 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
 
     const [editedAnswer, setEditedAnswer] = useState(answer.answer);
     const [errors, setErrors] = useState([]);
+    const [chars, setChars] = useState(answer.answer.length)
+
+    useEffect(() => {
+        setChars(editedAnswer.trim().length)
+    }, [editedAnswer])
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedAnswer.length === 0) validateErrors.push("Cannot post empty answer.");
+        if (editedAnswer.trim().length === 0) validateErrors.push("Cannot post empty question.");
+        if (editedAnswer.length < 30 || editedAnswer.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -26,7 +32,7 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
             'questionId': question.id
         }
 
-        if (editedAnswer.length > 0) {
+        if (editedAnswer.trim().length > 29 && editedAnswer.trim().length < 251) {
             await dispatch(editAnswer(payload))
             await dispatch(getAnswers())
             await dispatch(authenticate())
@@ -48,13 +54,16 @@ function EditAnswerForm({ user, setShowModal, answer, questions }) {
                     <div className=''>
                         <label htmlFor="" />
                         <textarea
-                            className='answeresTextarea'
+                            className='answersTextarea'
                             rows="9"
                             cols="60"
                             value={editedAnswer}
                             placeholder="Write answer here"
                             onChange={(e) => setEditedAnswer(e.target.value)}>
                         </textarea>
+                        <div id='charLimitsOutDiv'>
+                            <div id='charLimits'>({chars}/250)</div>
+                        </div>
                         <div className='answersErrorsDiv'>
                             {errors.map((error, idx) => (
                                 <p key={idx} >{error}</p>
