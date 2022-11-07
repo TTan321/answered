@@ -16,6 +16,15 @@ This project was made with the following:
 * [Questions](https://github.com/TTan321/quora-clone/wiki/Features) 
 * [Answered](https://github.com/TTan321/quora-clone/wiki/Features)
 
+## Login Page of answered
+![answered-homepage](https://user-images.githubusercontent.com/104934632/200253941-ec71204a-82a4-4a1e-85da-ac7a982e622a.PNG)
+
+## Homepage after logging in
+![answered-questionsfeed](https://user-images.githubusercontent.com/104934632/200254003-b9fa67b8-33d6-4c0d-9516-0096f29df2e7.PNG)
+
+## User's Profile Page
+![user-profile-page](https://user-images.githubusercontent.com/104934632/200254160-3e5abaaa-bf04-4862-ab5a-4cd978b442cc.PNG)
+
 ## Future Goals
 * Adding the ability to like questions and answers
 * Being able to reply to answers and have a thread
