@@ -9,7 +9,7 @@ const NavBar = ({ user }) => {
   return (
     <nav id='navBar'>
       <NavLink to='/' exact={true} activeClassName='active'>
-        <img className='logo' src={logo} />
+        <img className='logo' src={logo} alt='answered-logo' />
       </NavLink>
       <ProfileButton user={user} />
     </nav>
