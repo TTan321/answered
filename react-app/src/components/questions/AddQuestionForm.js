@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loadQuestions, postQuestion } from '../../store/questions'
+import { authenticate } from '../../store/session'
 import './AddQuestionForm.css'
 
 function AddQuestionForm({ setShowModal, user }) {
@@ -42,6 +43,7 @@ function AddQuestionForm({ setShowModal, user }) {
         if (question.trim().length > 29 && question.trim().length < 251) {
             await dispatch(postQuestion(payload))
             await dispatch(loadQuestions())
+            await dispatch(authenticate())
             setShowModal(false);
         }
     };
