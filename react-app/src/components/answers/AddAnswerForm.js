@@ -1,20 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { addAnswer, getAnswers } from '../../store/answers';
+import { authenticate } from '../../store/session';
 import './AddAnswerForm.css'
 
 function AddAnswerForm({ user, setShowModal, question }) {
     const dispatch = useDispatch()
     const [answer, setAnswer] = useState('');
     const [errors, setErrors] = useState([]);
+    const [chars, setChars] = useState(0)
 
     console.log('ADD ANSWER QUESTIONS: ', question)
+
+    useEffect(() => {
+        setChars(answer.trim().length)
+    }, [answer])
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (answer.length === 0) validateErrors.push("Cannot post empty answer.");
+        if (answer.trim().length === 0) validateErrors.push("Cannot post empty question.");
+        if (answer.length < 30 || answer.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -23,9 +30,10 @@ function AddAnswerForm({ user, setShowModal, question }) {
             'question_id': question.id
         }
 
-        if (answer.length > 0) {
+        if (answer.trim().length > 29 && answer.trim().length < 251) {
             await dispatch(addAnswer(payload))
             await dispatch(getAnswers())
+            await dispatch(authenticate())
             setShowModal(false);
         }
 
@@ -44,13 +52,16 @@ function AddAnswerForm({ user, setShowModal, question }) {
                     <div className=''>
                         <label htmlFor="" />
                         <textarea
-                            className=''
+                            className='answersTextarea'
                             rows="9"
                             cols="60"
                             value={answer}
                             placeholder="Write answer here"
                             onChange={(e) => setAnswer(e.target.value)}>
                         </textarea>
+                        <div id='charLimitsOutDiv'>
+                            <div id='charLimits'>({chars}/250)</div>
+                        </div>
                         <div className='answersErrorsDiv'>
                             {errors.map((error, idx) => (
                                 <p key={idx} >{error}</p>
