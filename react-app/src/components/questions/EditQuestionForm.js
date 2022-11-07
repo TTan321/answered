@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { modifyQuestion } from '../../store/questions'
 import { authenticate } from '../../store/session'
@@ -8,12 +8,18 @@ function EditQuestionForm({ setShowModal, question }) {
     const dispatch = useDispatch()
     const [editedQuestion, setEditedQuestion] = useState(question.question);
     const [errors, setErrors] = useState([]);
+    const [chars, setChars] = useState(question.question.length)
+
+    useEffect(() => {
+        setChars(editedQuestion.trim().length)
+    }, [editedQuestion])
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedQuestion.length === 0) validateErrors.push("Cannot post empty question.");
+        if (editedQuestion.trim().length === 0) validateErrors.push("Cannot post empty question.");
+        if (editedQuestion.length < 30 || editedQuestion.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
@@ -22,7 +28,7 @@ function EditQuestionForm({ setShowModal, question }) {
             'questionId': question.id
         }
 
-        if (editedQuestion.length > 0) {
+        if (editedQuestion.trim().length > 29 && editedQuestion.trim().length < 251) {
             await dispatch(modifyQuestion(payload))
             await dispatch(authenticate())
             setShowModal(false);
@@ -49,6 +55,9 @@ function EditQuestionForm({ setShowModal, question }) {
                         placeholder="Type Question here"
                         onChange={(e) => setEditedQuestion(e.target.value)}>
                     </textarea>
+                    <div id='charLimitsOutDiv'>
+                        <div id='charLimits'>({chars}/250)</div>
+                    </div>
                     <div className='questionErrorsDiv'>
                         {errors.map((error, idx) => (
                             <p key={idx} >{error}</p>
