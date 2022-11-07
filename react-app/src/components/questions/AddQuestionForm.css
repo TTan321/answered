@@ -73,3 +73,13 @@
 .questionTextbox {
     resize: none;
 }
+
+#charLimitsOutDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#charLimits {
+    font-weight: bold;
+    font-size: 13px;
+}

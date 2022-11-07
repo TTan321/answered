@@ -53,7 +53,7 @@ def edit_question(question_id):
         question.updated_at = date.today()
         db.session.commit()
         return {'question': question.to_dict_question_rel()}
-    return form.errors
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Add an answer to a question
 @question_routes.route('/<int:question_id>/answer', methods=['POST'])
