@@ -57,7 +57,6 @@ export const addAnswer = answer => async dispatch => {
 }
 
 export const editAnswer = answer => async dispatch => {
-    console.log('IN THUNk EDIT ANSWER PAYLOAD: ', answer)
     const response = await fetch(`/api/answers/${answer.answer_id}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
@@ -65,14 +64,12 @@ export const editAnswer = answer => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json()
-        console.log('RETURNED EDITED ANSWER: ', data)
         dispatch(updateAnswer(data.answer))
         return { ...data }
     }
 }
 
 export const deleteAnswer = id => async dispatch => {
-    console.log('DELETE THUNK PAYLOAD: ', id)
     const response = await fetch(`/api/answers/${id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" },
@@ -80,7 +77,6 @@ export const deleteAnswer = id => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log('DELETE THUNK RES DATA: ', data)
         dispatch(removeAnswer(data.id))
         return { ...data }
     }

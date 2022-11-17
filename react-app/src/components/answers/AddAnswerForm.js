@@ -10,7 +10,7 @@ function AddAnswerForm({ user, setShowModal, question }) {
     const [errors, setErrors] = useState([]);
     const [chars, setChars] = useState(0)
 
-    console.log('ADD ANSWER QUESTIONS: ', question)
+
 
     useEffect(() => {
         setChars(answer.trim().length)
