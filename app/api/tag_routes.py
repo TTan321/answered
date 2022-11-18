@@ -24,7 +24,7 @@ def add_tag():
             return {'message':'name exist for'}
         else:
             data = Tag(
-                name = form.data['name']
+                name = form.data['name'],
                 image_url = form.data['image_url']
             )
             db.session.add(data)
