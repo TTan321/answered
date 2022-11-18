@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { loadQuestions } from "../../store/questions";
 import { authenticate } from "../../store/session";
 import About from "../about/About";
+import Tags from "../tags/Tags";
 import NavBar from "../navbar/NavBar";
 import './Homepage.css'
 
@@ -26,6 +27,7 @@ function Homepage() {
         <div id='homepage'>
             <NavBar user={user} />
             <div id='homepageBelowNav'>
+                <Tags />
                 <div id='questionsFeed'>
                     {
                         questionsArr.reverse().map(question => (
