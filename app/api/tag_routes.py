@@ -44,3 +44,13 @@ def edit_tag(tag_id):
         db.session.commit()
         return {'tag': tag.to_dict_tag_rel()}
     return form.errors
+
+# Delete a tag
+@tag_routes.route('/<int:tag_id>', methods=['DELETE'])
+def delete_tag(tag_id):
+    tag = Tag.query.get(tag_id)
+    if tag:
+        db.session.delete(tag)
+        db.session.commit()
+        return {'message': 'tag has been deleted', 'id': tag_id}
+    return {'message': 'this tag does not exist'}
