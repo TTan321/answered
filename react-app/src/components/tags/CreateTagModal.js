@@ -9,7 +9,7 @@ function CreateTagModal() {
     return (
         <>
             <div className="" onClick={() => setShowModal(true)}>
-                <p className="">Create Space</p>
+                <p className="">+ Create Space</p>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
