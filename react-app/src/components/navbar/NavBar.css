@@ -4,7 +4,7 @@
     justify-content: center;
     height: 50px;
     width: 100vw;
-    column-gap: 50%;
+    column-gap: 33%;
     border-bottom: 1px solid lightgrey;
     background-color: white;
     position: fixed;
