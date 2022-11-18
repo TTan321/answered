@@ -43,7 +43,8 @@ function Homepage() {
                                 <span style={{ color: 'gray' }}>Ask</span>
                             </div> | */}
                             <HomepageQModalTwo user={user} />
-                            <div className="questionAnswer">
+                            |
+                            <div className="questionAnswer" onClick={() => history.push('/answer')}>
                                 <span style={{ color: 'gray' }}>Answer</span>
                             </div>
                         </div>
