@@ -28,7 +28,7 @@ def upgrade():
     sa.Column('image_url', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.add_column('questions', sa.Column('tag_id', sa.Integer(), nullable=False))
+    op.add_column('questions', sa.Column('tag_id', sa.Integer(), nullable=True))
     op.alter_column('questions', 'user_id',
                existing_type=sa.INTEGER(),
                nullable=True)
