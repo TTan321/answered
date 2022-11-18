@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadTags } from '../../store/tags'
+import CreateTagModal from './CreateTagModal'
 import './Tags.css'
 
 function Tags() {
@@ -15,6 +16,7 @@ function Tags() {
 
     return tagsArr.length > 0 && (
         <div id='tagsContainer'>
+            <CreateTagModal />
             {tagsArr.map(tag => (
                 <div className='tags' key={tag.id}>
                     <span className='tagContents'>
