@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Question, Answer
+from app.models import db, Question, Answer, Tag
 from ..forms.question_form import QuestionForm
 from..forms.answer_form import AnswerForm
 from flask_login import current_user
@@ -71,6 +71,21 @@ def add_answer(question_id):
         db.session.commit()
         return {'answer': data.to_dict_answer_rel()}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# Add a tag to a question
+@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['PUT'])
+def add_tag_to_question(question_id, tag_id):
+    question = Question.query.get(question_id)
+    tag = Tag.query.get(tag_id)
+    if question and tag:
+        data = Question(
+            question = question.question,
+            tag_id = tag.id
+        )
+        db.session.add(data)
+        db.session.commit()
+        return {'question': data.to_dict_question_rel()}
+    return {'message': 'question or tag does not exist'}
 
 # Delete a question
 @question_routes.route('/<int:question_id>', methods=['DELETE'])

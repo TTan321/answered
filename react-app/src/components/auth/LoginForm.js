@@ -43,7 +43,7 @@ const LoginForm = () => {
     <div id='loginPage'>
       <form onSubmit={onLogin} id='loginForm'>
         <div id='loginTitleContainer'>
-          <img className='loginLogo' src={logo} />
+          <img className='loginLogo' src={logo} alt='answered-logo' />
           <p style={{ margin: '0', color: 'grey' }}>Get the answers to all questions</p>
         </div>
         <div id='loginInputsContainer'>
