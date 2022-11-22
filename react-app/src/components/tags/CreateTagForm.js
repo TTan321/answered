@@ -29,8 +29,10 @@ function CreateTagForm({ setShowModal }) {
                 <i className="fas fa-times"></i>
             </div>
             <form id='createTagForm' onSubmit={onSubmit}>
+                <h3 id='tagFormHeader'>Create a Space</h3>
                 <label>Name</label>
                 <input
+                    className="tagFormInputs"
                     type="text"
                     value={name}
                     placeholder="Write name here"
@@ -38,12 +40,15 @@ function CreateTagForm({ setShowModal }) {
                 />
                 <label>Image Url</label>
                 <input
+                    className="tagFormInputs"
                     type="text"
                     value={imageUrl}
                     placeholder="Enter image url here"
                     onChange={(e) => setImageUrl(e.target.value)}
                 />
-                <button type="submit">Create</button>
+                <div id='createButtonDiv'>
+                    <button type="submit" id='tagFormSubmit'>Create</button>
+                </div>
             </form>
         </div>
     )
