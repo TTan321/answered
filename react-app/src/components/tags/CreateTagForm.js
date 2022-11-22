@@ -30,7 +30,7 @@ function CreateTagForm({ setShowModal }) {
             </div>
             <form id='createTagForm' onSubmit={onSubmit}>
                 <h3 id='tagFormHeader'>Create a Space</h3>
-                <label>Name</label>
+                <label className="tagLabels">Name</label>
                 <input
                     className="tagFormInputs"
                     type="text"
@@ -38,7 +38,7 @@ function CreateTagForm({ setShowModal }) {
                     placeholder="Write name here"
                     onChange={(e) => setName(e.target.value)}
                 />
-                <label>Image Url</label>
+                <label className="tagLabels">Image Url</label>
                 <input
                     className="tagFormInputs"
                     type="text"
