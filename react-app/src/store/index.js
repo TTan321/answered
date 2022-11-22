@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import questionReducer from './questions';
 import answersReducer from './answers';
+import tagsReducer from './tags';
 
 const rootReducer = combineReducers({
   session,
   questionsState: questionReducer,
-  answersState: answersReducer
+  answersState: answersReducer,
+  tagsState: tagsReducer
 });
 
 

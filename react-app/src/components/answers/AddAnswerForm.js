@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { addAnswer, getAnswers } from '../../store/answers';
+import { loadQuestions } from '../../store/questions';
 import { authenticate } from '../../store/session';
 import './AddAnswerForm.css'
 
@@ -33,6 +34,7 @@ function AddAnswerForm({ user, setShowModal, question }) {
         if (answer.trim().length > 29 && answer.trim().length < 251) {
             await dispatch(addAnswer(payload))
             await dispatch(getAnswers())
+            await dispatch(loadQuestions())
             await dispatch(authenticate())
             setShowModal(false);
         }

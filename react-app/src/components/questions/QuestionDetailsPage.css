@@ -23,7 +23,7 @@
 
 .questionText {
     margin: 0;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -46,6 +46,7 @@
     cursor: pointer;
     margin-left: 5px;
     margin-bottom: 5px;
+    border: 1px solid lightgray;
 }
 
 .answerDiv:hover {

@@ -37,5 +37,5 @@ class Question(db.Model):
             'updatedAt': self.updated_at,
             'user': self.user.to_dict(),
             'answers': [answer.to_dict_answer() for answer in self.answers],
-            'tag': self.tag.to_dict_tag()
+            'tag': self.tag.to_dict_tag() if self.tag else None
         }
