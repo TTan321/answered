@@ -19,10 +19,6 @@ def add_tag():
     form = TagForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        tagExist = Tag.query.filter(Tag.name == form.data['name'])
-        if tagExist:
-            return {'message':'name exist for'}
-        else:
             data = Tag(
                 name = form.data['name'],
                 image_url = form.data['image_url']

@@ -9,6 +9,7 @@ import Homepage from './components/homepage/Homepage';
 import UsersQuestions from './components/questions/UsersQuestions';
 import ProfilePage from './components/profile/ProfilePage';
 import QuestionDetailsPage from './components/questions/QuestionsDetailsPage';
+import AnswerFeed from './components/answerFeed/AnswerFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <Homepage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/answer' exact={true} >
+          <AnswerFeed />
         </ProtectedRoute>
         <ProtectedRoute path='/question/:questionId' exact={true} >
           <QuestionDetailsPage />
