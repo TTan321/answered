@@ -1,0 +1,33 @@
+#tagFeedPage {
+    background-color: rgb(40, 40, 41, 0.06);
+    height: 100vh;
+}
+
+#tagFeedContainer {
+    display: flex;
+    justify-content: center;
+    padding-right: 185px;
+}
+
+#tagTitle {
+    margin-top: 85px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 536px;
+    height: 85px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    background-color: white;
+}
+
+#tagPic {
+    height: 60px;
+    width: 60px;
+}
+
+#tagName {
+    font-weight: bold;
+    font-size: 20px;
+}

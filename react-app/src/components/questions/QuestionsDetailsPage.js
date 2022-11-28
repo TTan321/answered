@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAnswers } from "../../store/answers";
@@ -17,6 +17,8 @@ function QuestionDetailsPage() {
     const answers = useSelector(state => state.answersState)
     const filteredAnswers = Object.values(answers).filter(answer => answer.questionId === +questionId)
 
+    const [showTopics, setShowTopics] = useState(false)
+
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadQuestions())
@@ -28,31 +30,38 @@ function QuestionDetailsPage() {
             <NavBar user={user} />
             <div id='questionDetailPage'>
                 <div className="questionDiv">
+                    {showTopics && (
+                        <div>
+                            Tags
+                        </div>
+                    )}
                     <div className="questiontextDiv">
                         <p className="questionText">{currentQuestion.question}</p>
                     </div>
                     {user.id !== currentQuestion.userId && (
                         < div className="interactionDiv">
                             <AddAnswerModal question={currentQuestion} user={user} />
+                            <i class="fas fa-pen" onClick={() => setShowTopics(showTopics ? false : true)} />
                         </div>
-                    )
-                    }
+                    )}
+                    {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
+                        < div className="noAnswersDiv">
+                            <div id='answerCanYou'>
+                                <div id='navbarNoImageIcon'>
+                                    {user.firstname.slice(0, 1).toUpperCase()}
+                                </div>
+                                {user.firstname}, can you answer this question?
+                                <AddAnswerModal question={currentQuestion} user={user} />
+                            </div>
+                            <div>
+                                No answers yet.
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="answerAmount">
                     <p>{filteredAnswers.length} Answers</p>
                 </div>
-                {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
-                    < div className="noAnswersDiv">
-                        <div id='answerCanYou'>
-                            {user.firstname}, can you answer this question?
-                            <AddAnswerModal question={currentQuestion} user={user} />
-                        </div>
-                        <div>
-                            No answers yet.
-                        </div>
-                    </div>
-                )
-                }
                 <div id='answerFeedDiv'>
                     {
                         filteredAnswers.map(answer => (

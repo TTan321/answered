@@ -81,8 +81,6 @@
 }
 
 .noAnswersDiv {
-    border: 1px solid lightgray;
-    border-radius: 5px;
     padding-top: 15px;
     padding-bottom: 15px;
     display: flex;
@@ -97,4 +95,5 @@
     align-items: center;
     padding-bottom: 25px;
     row-gap: 10px;
+    border-bottom: 1px solid lightgray;
 }

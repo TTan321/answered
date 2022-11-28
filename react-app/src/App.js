@@ -10,6 +10,7 @@ import UsersQuestions from './components/questions/UsersQuestions';
 import ProfilePage from './components/profile/ProfilePage';
 import QuestionDetailsPage from './components/questions/QuestionsDetailsPage';
 import AnswerFeed from './components/answerFeed/AnswerFeed';
+import TagFeed from './components/tags/TagFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +41,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/answer' exact={true} >
           <AnswerFeed />
+        </ProtectedRoute>
+        <ProtectedRoute path='/tag/:tagId' exact={true} >
+          <TagFeed />
         </ProtectedRoute>
         <ProtectedRoute path='/question/:questionId' exact={true} >
           <QuestionDetailsPage />
