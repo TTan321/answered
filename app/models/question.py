@@ -14,7 +14,7 @@ class Question(db.Model):
     updated_at = db.Column(db.Date, default=date.today())
     user = db.relationship('User', back_populates='questions')
     answers = db.relationship('Answer', back_populates='question', cascade='all, delete')
-    tag = db.relationship('Tag', back_populates='questions')
+    tags = db.relationship('Tag', back_populates='questions',secondary='questions_tags', cascade='all, delete')
 
     def to_dict_question(self):
         return {
@@ -34,5 +34,5 @@ class Question(db.Model):
             'updatedAt': self.updated_at,
             'user': self.user.to_dict(),
             'answers': [answer.to_dict_answer() for answer in self.answers],
-            'tag': self.tag.to_dict_tag() if self.tag else None
+            'tags': [tag.to_dict_tag() for tag in self.tags]
         }

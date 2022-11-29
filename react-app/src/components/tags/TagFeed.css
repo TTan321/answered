@@ -18,8 +18,21 @@
     padding: 0 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     column-gap: 15px;
     background-color: white;
+}
+
+.tagLeft {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.tagRight {
+    display: flex;
+    align-items: flex-end;
+    height: 70%;
 }
 
 #tagPic {

@@ -9,7 +9,7 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
     image_url = db.Column(db.String)
-    questions = db.relationship('Question', back_populates='tag')
+    questions = db.relationship('Question', back_populates='tags', secondary='questions_tags',)
 
     def to_dict_tag(self):
         return {

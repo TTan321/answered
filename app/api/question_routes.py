@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Question, Answer, Tag
+from app.models import db, Question, Answer, Tag, Question_Tag
 from ..forms.question_form import QuestionForm
 from..forms.answer_form import AnswerForm
 from flask_login import current_user
@@ -78,13 +78,13 @@ def add_tag_to_question(question_id, tag_id):
     question = Question.query.get(question_id)
     tag = Tag.query.get(tag_id)
     if question and tag:
-        data = Question(
-            question = question.question,
-            tag_id = tag.id
+        data = Question_Tag(
+            question_id = question_id,
+            tag_id = tag_id
         )
         db.session.add(data)
         db.session.commit()
-        return {'question': data.to_dict_question_rel()}
+        return {'question_tag': data.to_dict_questions_tags()}
     return {'message': 'question or tag does not exist'}
 
 # Delete a question

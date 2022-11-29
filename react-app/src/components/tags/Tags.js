@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { loadTags } from '../../store/tags'
-import CreateTagModal from './CreateTagModal'
+import CreateTagModal from './TagForms/CreateTagModal'
 import './Tags.css'
 
 function Tags() {
