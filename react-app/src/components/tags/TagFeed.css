@@ -15,7 +15,7 @@
     border-radius: 5px;
     width: 536px;
     height: 85px;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,8 +31,11 @@
 
 .tagRight {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
-    height: 70%;
+    height: 95%;
+    padding-right: 5px;
 }
 
 #tagPic {

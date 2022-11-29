@@ -72,7 +72,7 @@ export const modifyTag = payload => async dispatch => {
 }
 
 export const removeTag = id => async dispatch => {
-    const response = await fetch(`/api/questions/${id}`, {
+    const response = await fetch(`/api/tags/${id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

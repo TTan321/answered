@@ -6,6 +6,7 @@ import { loadTags } from '../../store/tags'
 import NavBar from '../navbar/NavBar'
 import Tags from './Tags'
 import EditTagModal from './TagForms/EditTagModal'
+import DeleteTagModal from './DeleteTags/DeleteTagModal'
 import './TagFeed.css'
 
 function TagFeed() {
@@ -34,6 +35,7 @@ function TagFeed() {
                         <span id='tagName' >{currentTag.name}</span>
                     </div>
                     <div className='tagRight'>
+                        <DeleteTagModal tag={currentTag} />
                         <EditTagModal tag={currentTag} />
                     </div>
                 </div>

@@ -8,7 +8,9 @@ function EditTagModal({ tag }) {
 
     return (
         <>
-            <i class="fa-solid fa-ellipsis fa-lg manageTags" onClick={() => setShowModal(true)} />
+            <div id='createTagXDiv'>
+                <i className="fa-solid fa-ellipsis fa-lg manageTags" onClick={() => setShowModal(true)} />
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditTagForm setShowModal={setShowModal} tag={tag} />
