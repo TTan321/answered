@@ -73,7 +73,7 @@ def add_answer(question_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Add a tag to a question
-@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['PUT'])
+@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['POST'])
 def add_tag_to_question(question_id, tag_id):
     question = Question.query.get(question_id)
     tag = Tag.query.get(tag_id)
@@ -84,7 +84,8 @@ def add_tag_to_question(question_id, tag_id):
         )
         db.session.add(data)
         db.session.commit()
-        return {'question_tag': data.to_dict_questions_tags()}
+        questions = Question.query.all()
+        return {'questions': questions.to_dict_question_rel()}
     return {'message': 'question or tag does not exist'}
 
 # Delete a question

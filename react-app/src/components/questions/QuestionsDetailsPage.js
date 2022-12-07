@@ -6,6 +6,7 @@ import { loadQuestions } from "../../store/questions";
 import { authenticate } from "../../store/session";
 import AddAnswerModal from "../answers/AddAnswerModal";
 import NavBar from "../navbar/NavBar";
+import AddTagModal from "./AddTagToQuestion/AddTagModal";
 import './QuestionDetailsPage.css'
 
 function QuestionDetailsPage() {
@@ -18,6 +19,8 @@ function QuestionDetailsPage() {
     const filteredAnswers = Object.values(answers).filter(answer => answer.questionId === +questionId)
 
     const [showTopics, setShowTopics] = useState(false)
+
+    console.log('CURRENT QUESTION: ', currentQuestion)
 
     useEffect(() => {
         dispatch(authenticate())
@@ -32,7 +35,14 @@ function QuestionDetailsPage() {
                 <div className="questionDiv">
                     {showTopics && (
                         <div>
-                            Tags
+                            {
+                                currentQuestion.tags.map(tag => (
+                                    <div key={tag.id}>
+                                        {tag.name}
+                                    </div>
+                                ))
+                            }
+                            <AddTagModal question={currentQuestion} />
                         </div>
                     )}
                     <div className="questiontextDiv">
@@ -41,7 +51,7 @@ function QuestionDetailsPage() {
                     {user.id !== currentQuestion.userId && (
                         < div className="interactionDiv">
                             <AddAnswerModal question={currentQuestion} user={user} />
-                            <i class="fas fa-pen" onClick={() => setShowTopics(showTopics ? false : true)} />
+                            <i className="fas fa-info-circle" onClick={() => setShowTopics(showTopics ? false : true)} />
                         </div>
                     )}
                     {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
