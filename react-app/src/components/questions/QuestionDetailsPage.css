@@ -97,3 +97,21 @@
     row-gap: 10px;
     border-bottom: 1px solid lightgray;
 }
+
+.tagDisplay {
+    display: flex;
+    flex-direction: row;
+}
+
+.questionsTags {
+    display: flex;
+    align-items: center;
+    background-color: rgb(211, 211, 211, 0.5);
+    padding: 3px 3px;
+    margin-left: 3px;
+    margin-top: 3px;
+    font-size: 13px;
+    column-gap: 5px;
+    height: 15px;
+    width: min-content;
+}

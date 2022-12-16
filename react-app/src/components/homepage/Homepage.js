@@ -7,10 +7,11 @@ import { authenticate } from "../../store/session";
 import About from "../about/About";
 import Tags from "../tags/Tags";
 import NavBar from "../navbar/NavBar";
-import './Homepage.css'
 import AddQuestionModal from "../questions/AddQuestionModal";
 import HomepageQuestionModal from "../questions/HomePageQuestionModal";
 import HomepageQModalTwo from "../questions/HomepageQModalTwo";
+import { loadTags } from "../../store/tags";
+import './Homepage.css'
 
 
 function Homepage() {
@@ -24,6 +25,7 @@ function Homepage() {
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadQuestions())
+        dispatch(loadTags())
     }, [dispatch])
 
     return Object.values(user).length > 0 && questionsArr.length > 0 && (

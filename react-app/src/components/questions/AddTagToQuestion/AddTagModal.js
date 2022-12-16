@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal'
 import AddTag from './AddTag';
 
-function AddTagModal({ user }) {
+function AddTagModal({ question }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -10,7 +10,7 @@ function AddTagModal({ user }) {
             <i class="fas fa-edit" onClick={() => setShowModal(true)} />
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <AddTag setShowModal={setShowModal} user={user} />
+                    <AddTag setShowModal={setShowModal} question={question} />
                 </Modal>
             )}
         </>

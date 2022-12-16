@@ -34,15 +34,15 @@ function QuestionDetailsPage() {
             <div id='questionDetailPage'>
                 <div className="questionDiv">
                     {showTopics && (
-                        <div>
+                        <div className="tagDisplay">
                             {
                                 currentQuestion.tags.map(tag => (
-                                    <div key={tag.id}>
+                                    <div className="questionsTags" key={tag.id}>
                                         {tag.name}
                                     </div>
                                 ))
                             }
-                            <AddTagModal question={currentQuestion} />
+                            < AddTagModal question={currentQuestion} />
                         </div>
                     )}
                     <div className="questiontextDiv">

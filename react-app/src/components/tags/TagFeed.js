@@ -18,8 +18,6 @@ function TagFeed() {
     const { tagId } = useParams()
     const currentTag = Object.values(tags).find(tag => tag.id === +tagId)
 
-    console.log('currentTag: ', currentTag.questions[0].question)
-
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadTags())

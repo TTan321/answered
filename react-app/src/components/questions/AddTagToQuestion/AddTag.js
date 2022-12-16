@@ -4,11 +4,21 @@ import { useParams } from "react-router-dom"
 import { addTagToQuestion, loadQuestions } from "../../../store/questions"
 import { loadTags } from "../../../store/tags"
 
-function AddTag({ setShowModal }) {
+function AddTag({ setShowModal, question }) {
     const dispatch = useDispatch()
     const { questionId } = useParams()
     const tags = useSelector(state => state.tagsState)
     const tagsArr = Object.values(tags)
+    let tagsSet = new Set()
+
+    for (let i = 0; i < question.tags.length; i++) {
+        tagsSet.add(question.tags[i].name)
+    }
+
+    let questionTagsArr = tagsArr.filter(tag => !tagsSet.has(tag.name))
+
+
+    console.log('QUestios tags: ', questionTagsArr)
 
     const [checkedTags, setCheckedTags] = useState(0)
 
@@ -28,6 +38,8 @@ function AddTag({ setShowModal }) {
             question_id: +questionId,
             tag_id: checkedTags
         }
+
+        console.log('PAYLOAD: ', payload)
 
         await dispatch(addTagToQuestion(payload))
         await dispatch(loadQuestions())
@@ -53,9 +65,10 @@ function AddTag({ setShowModal }) {
                         </div>
                     ))
                 } */}
-                <select onChange={(e) => onSelect(e, e.target.value)}>
+                <select defaultValue={"none"} onChange={(e) => onSelect(e, e.target.value)}>
+                    <option value="none" disabled hidden>Select a Tag</option>
                     {
-                        tagsArr.map(tag => (
+                        questionTagsArr.map(tag => (
                             <option key={tag.id}
                                 value={tag.id}
                             >
