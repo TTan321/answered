@@ -17,9 +17,6 @@ function AddTag({ setShowModal, question }) {
 
     let questionTagsArr = tagsArr.filter(tag => !tagsSet.has(tag.name))
 
-
-    console.log('QUestios tags: ', questionTagsArr)
-
     const [checkedTags, setCheckedTags] = useState(0)
 
     useEffect(() => {
@@ -50,21 +47,6 @@ function AddTag({ setShowModal, question }) {
         <div>
             Add Tags
             <form onSubmit={onSubmit}>
-                {/* {
-                    tagsArr.map(tag => (
-                        <div key={tag.id}>
-                            <label htmlFor={tag.name}>
-                                <input
-                                    name={tag.name}
-                                    type="checkbox"
-                                    value={tag.id}
-                                    onChange={() => setCheckedTags(checkedTags[`${tag.name}`] ? false : true)}
-                                />
-                                {tag.name}
-                            </label>
-                        </div>
-                    ))
-                } */}
                 <select defaultValue={"none"} onChange={(e) => onSelect(e, e.target.value)}>
                     <option value="none" disabled hidden>Select a Tag</option>
                     {

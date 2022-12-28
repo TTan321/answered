@@ -9,6 +9,7 @@ class Question_Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), nullable=True)
     question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=True)
+    questions = db.relationship('Question', back_populates='question_tags')
 
     def to_dict_questions_tags(self):
         return {

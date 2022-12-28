@@ -7,6 +7,7 @@ import { authenticate } from "../../store/session";
 import AddAnswerModal from "../answers/AddAnswerModal";
 import NavBar from "../navbar/NavBar";
 import AddTagModal from "./AddTagToQuestion/AddTagModal";
+import DeleteTagModal from "./DeleteTagFromQuestion/DeleteTagModal";
 import './QuestionDetailsPage.css'
 
 function QuestionDetailsPage() {
@@ -36,10 +37,16 @@ function QuestionDetailsPage() {
                     {showTopics && (
                         <div className="tagDisplay">
                             {
+                                // currentQuestion.tags.map(tag => (
+                                //     <div className="questionsTags" key={tag.id} >
+                                //         {tag.name}
+                                //     </div>
+                                // ))
                                 currentQuestion.tags.map(tag => (
-                                    <div className="questionsTags" key={tag.id}>
-                                        {tag.name}
-                                    </div>
+                                    <DeleteTagModal key={tag.id} tag={tag} question={currentQuestion} />
+                                    // <div className="questionsTags" key={tag.id} >
+                                    //     {tag.name}
+                                    // </div>
                                 ))
                             }
                             < AddTagModal question={currentQuestion} />

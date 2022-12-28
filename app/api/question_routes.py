@@ -88,6 +88,17 @@ def add_tag_to_question(question_id, tag_id):
         return {'questions': questions.to_dict_question_rel()}
     return {'message': 'question or tag does not exist'}
 
+# Remove a tag from a question
+@question_routes.route('/tag/<int:question_tag_id>', methods=['DELETE'])
+def remove_tag_from_question(question_tag_id):
+    tag = Question_Tag.query.get(question_tag_id)
+    if tag:
+        db.session.delete(tag)
+        db.session.commit()
+        questions = Question.query.all()
+        return {'questions': questions.to_dict_question_rel()}
+    return {'message': 'question or tag does not exist'}
+
 # Delete a question
 @question_routes.route('/<int:question_id>', methods=['DELETE'])
 def delete_question(question_id):

@@ -122,6 +122,27 @@ export const addTagToQuestion = payload => async dispatch => {
     }
 }
 
+export const removeTagOnQuestion = payload => async dispatch => {
+    console.log("THIS IS THE PAYLOAD QUESTION ID: ")
+    const response = await fetch(`/api/questions/tag/${payload.question_tag_id}`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(ADD_QUESTION(data.question))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
 // Questions Reducer
 const questionReducer = (state = {}, action) => {
     switch (action.type) {
