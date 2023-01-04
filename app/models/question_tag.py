@@ -1,19 +1,14 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class Question_Tag(db.Model):
-    __tablename__ = "questions_tags"
+Question_Tag = db.Table(
+    "questions_tags",
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+    db.Model.metadata,
 
-    id = db.Column(db.Integer, primary_key=True)
-    tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), nullable=True)
-    question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=True)
-    questions = db.relationship('Question', back_populates='question_tags')
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), nullable=True),
+    db.Column('question_id', db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=True)
+)
 
-    def to_dict_questions_tags(self):
-        return {
-            'id': self.id,
-            'tag_id': self.tag_id,
-            'question_id': self.question_id
-        }
+if environment == "production":
+    Question_Tag.schema = SCHEMA

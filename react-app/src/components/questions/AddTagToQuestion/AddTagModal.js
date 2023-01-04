@@ -9,7 +9,7 @@ function AddTagModal({ question }) {
 
     return (
         <>
-            <i class="fas fa-edit addTagIcon" onClick={() => setShowModal(true)} />
+            <i className="fas fa-edit addTagIcon" onClick={() => setShowModal(true)} />
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddTag setShowModal={setShowModal} question={question} />
