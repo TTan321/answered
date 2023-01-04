@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.models import db, Answer
-from app.forms import AnswerForm
+from app.models import db, Answer, Comment
+from app.forms import AnswerForm, CommentForm
 from datetime import date
 
 
@@ -34,3 +34,20 @@ def delete_answer(answer_id):
         db.session.commit()
         return {'id': answer_id}
     return {'message': 'answer with requested id does not exist'}
+
+# Add a comment to an answer
+@answer_routes.route('/<int:answer_id>/user/<int:user_id>', methods=['POST'])
+def add_tag_to_question(answer_id, user_id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = Comment(
+            comment = form.data['comment'],
+            user_id = user_id,
+            answer_id = answer_id
+        )
+        db.session.add(data)
+        db.session.commit()
+        answers = Answer.query.all()
+        return {'comments': answers.to_dict_answer_rel()}
+    return {'message': 'question or tag does not exist'}
