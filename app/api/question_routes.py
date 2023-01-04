@@ -3,6 +3,7 @@ from app.models import db, Question, Answer, Tag, Question_Tag
 from ..forms.question_form import QuestionForm
 from..forms.answer_form import AnswerForm
 from flask_login import current_user
+from sqlalchemy.orm import joinedload
 from datetime import date
 
 question_routes = Blueprint('questions', __name__)
@@ -77,26 +78,25 @@ def add_answer(question_id):
 def add_tag_to_question(question_id, tag_id):
     question = Question.query.get(question_id)
     tag = Tag.query.get(tag_id)
-    if question and tag:
-        data = Question_Tag(
-            question_id = question_id,
-            tag_id = tag_id
-        )
-        db.session.add(data)
+    if tag.id not in question.tags:
+        question.tags.append(tag)
         db.session.commit()
         questions = Question.query.all()
         return {'questions': questions.to_dict_question_rel()}
     return {'message': 'question or tag does not exist'}
 
 # Remove a tag from a question
-@question_routes.route('/tag/<int:question_tag_id>', methods=['DELETE'])
-def remove_tag_from_question(question_tag_id):
-    tag = Question_Tag.query.get(question_tag_id)
-    if tag:
-        db.session.delete(tag)
+@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['DELETE'])
+def remove_tag_from_question(question_id, tag_id):
+    # question_tag = Question.query.join(Tag).filter(Tag.id == question_tag_id).options(joinedload(Question.tags))
+    # if question_tag:
+    questions = Question.query.get(question_id)
+    tag = Tag.query.get(tag_id)
+    if tag in questions.tags:
+        questions.tags.remove(tag)
         db.session.commit()
-        questions = Question.query.all()
-        return {'questions': questions.to_dict_question_rel()}
+        new_questions = Question.query.all()
+        return {'questions': new_questions.to_dict_question_rel()}
     return {'message': 'question or tag does not exist'}
 
 # Delete a question
