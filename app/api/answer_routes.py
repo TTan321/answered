@@ -49,5 +49,5 @@ def add_comment_to_answer(answer_id, user_id):
         db.session.add(data)
         db.session.commit()
         answers = Answer.query.all()
-        return {'answer': answers.to_dict_answer_rel()}
+        return {'answer': [answer.to_dict_answer_rel() for answer in answers]}
     return {'message': 'question or tag does not exist'}

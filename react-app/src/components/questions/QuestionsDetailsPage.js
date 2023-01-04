@@ -7,6 +7,7 @@ import { authenticate } from "../../store/session";
 import AddAnswerModal from "../answers/AddAnswerModal";
 import NavBar from "../navbar/NavBar";
 import AddTagModal from "./AddTagToQuestion/AddTagModal";
+import CommentFormModal from "./comments/commentFormModal";
 import DeleteTagModal from "./DeleteTagFromQuestion/DeleteTagModal";
 import './QuestionDetailsPage.css'
 
@@ -45,26 +46,29 @@ function QuestionDetailsPage() {
                     <div className="questiontextDiv">
                         <p className="questionText">{currentQuestion.question}</p>
                     </div>
-                    {user.id !== currentQuestion.userId && (
-                        < div className="interactionDiv">
-                            <AddAnswerModal question={currentQuestion} user={user} />
-                            <i className="fas fa-info-circle details" onClick={() => setShowTopics(showTopics ? false : true)} />
-                        </div>
-                    )}
-                    {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
-                        < div className="noAnswersDiv">
-                            <div id='answerCanYou'>
-                                <div id='navbarNoImageIcon'>
-                                    {user.firstname.slice(0, 1).toUpperCase()}
-                                </div>
-                                {user.firstname}, can you answer this question?
+                    {
+                        user.id !== currentQuestion.userId && (
+                            < div className="interactionDiv">
                                 <AddAnswerModal question={currentQuestion} user={user} />
+                                <i className="fas fa-info-circle details" onClick={() => setShowTopics(showTopics ? false : true)} />
                             </div>
-                            <div>
-                                No answers yet.
+                        )
+                    }
+                    {
+                        user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (
+                            < div className="noAnswersDiv">
+                                <div id='answerCanYou'>
+                                    <div id='navbarNoImageIcon'>
+                                        {user.firstname.slice(0, 1).toUpperCase()}
+                                    </div>
+                                    {user.firstname}, can you answer this question?
+                                    <AddAnswerModal question={currentQuestion} user={user} />
+                                </div>
+                                <div>
+                                    No answers yet.
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
                 </div>
                 <div className="answerAmount">
                     <p>{filteredAnswers.length} Answers</p>
@@ -79,6 +83,9 @@ function QuestionDetailsPage() {
                                 </div>
                                 <div className="answerTextDiv">
                                     {answer.answer}
+                                </div>
+                                <div className="answerNavi">
+                                    <CommentFormModal user={user} answer={answer} />
                                 </div>
                             </div>
                         ))
