@@ -28,5 +28,5 @@ This project was made with the following:
 ## Future Goals
 * Adding the ability to like questions and answers
 * Being able to reply to answers and have a thread
-* Creating tags/spaces where users can filter posts based on the tags associated with a post
+
 
