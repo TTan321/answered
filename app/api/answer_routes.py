@@ -37,7 +37,7 @@ def delete_answer(answer_id):
 
 # Add a comment to an answer
 @answer_routes.route('/<int:answer_id>/user/<int:user_id>', methods=['POST'])
-def add_tag_to_question(answer_id, user_id):
+def add_comment_to_answer(answer_id, user_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
