@@ -34,12 +34,6 @@ function AddQuestionForm({ setShowModal, user }) {
             'userId': user.id
         }
 
-        // console.log("DATA: ", data)
-        // if (data) {
-        //     console.log("ERRORS: ", errors)
-        //     await setErrors(data)
-        // }
-
         if (question.trim().length > 29 && question.trim().length < 251) {
             await dispatch(postQuestion(payload))
             await dispatch(loadQuestions())

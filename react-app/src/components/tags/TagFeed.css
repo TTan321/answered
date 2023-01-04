@@ -1,0 +1,68 @@
+#tagFeedPage {
+    background-color: rgb(40, 40, 41, 0.06);
+    height: 100vh;
+}
+
+#tagFeedContainer {
+    display: flex;
+    justify-content: center;
+    padding-right: 185px;
+}
+
+#innerTagFeedContainer {
+    display: flex;
+    flex-direction: column;
+    width: 546px;
+    height: max-content;
+}
+
+#tagTitle {
+    margin-top: 85px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 536px;
+    height: 85px;
+    padding: 0 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 15px;
+    background-color: white;
+}
+
+.tagLeft {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.tagRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 95%;
+    padding-right: 5px;
+}
+
+#tagPic {
+    height: 60px;
+    width: 60px;
+}
+
+#tagName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#tagQuestions {
+    border: 1px solid lightgray;
+    min-height: 50px;
+    height: max-content;
+    width: 526px;
+    padding: 10px 10px;
+    row-gap: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+}

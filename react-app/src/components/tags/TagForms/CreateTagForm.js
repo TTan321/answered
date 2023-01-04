@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createTag, loadTags } from "../../store/tags"
+import { createTag, loadTags } from "../../../store/tags"
 import './CreateTagForm.css'
 
 
