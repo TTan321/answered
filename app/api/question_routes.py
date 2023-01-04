@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Question, Answer, Tag
+from app.models import db, Question, Answer, Tag, Question_Tag
 from ..forms.question_form import QuestionForm
 from..forms.answer_form import AnswerForm
 from flask_login import current_user
@@ -73,18 +73,30 @@ def add_answer(question_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Add a tag to a question
-@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['PUT'])
+@question_routes.route('/<int:question_id>/tag/<int:tag_id>', methods=['POST'])
 def add_tag_to_question(question_id, tag_id):
     question = Question.query.get(question_id)
     tag = Tag.query.get(tag_id)
     if question and tag:
-        data = Question(
-            question = question.question,
-            tag_id = tag.id
+        data = Question_Tag(
+            question_id = question_id,
+            tag_id = tag_id
         )
         db.session.add(data)
         db.session.commit()
-        return {'question': data.to_dict_question_rel()}
+        questions = Question.query.all()
+        return {'questions': questions.to_dict_question_rel()}
+    return {'message': 'question or tag does not exist'}
+
+# Remove a tag from a question
+@question_routes.route('/tag/<int:question_tag_id>', methods=['DELETE'])
+def remove_tag_from_question(question_tag_id):
+    tag = Question_Tag.query.get(question_tag_id)
+    if tag:
+        db.session.delete(tag)
+        db.session.commit()
+        questions = Question.query.all()
+        return {'questions': questions.to_dict_question_rel()}
     return {'message': 'question or tag does not exist'}
 
 # Delete a question

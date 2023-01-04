@@ -1,0 +1,67 @@
+.addTagIcon {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.addTagIcon:hover {
+    color: blue;
+}
+
+.addTagForm {
+    height: max-content;
+    width: 250px;
+}
+
+.addTagFormBody {
+    padding: 0 15px;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+}
+
+#add-tag-cancel-div {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#add-tag-cancel-div:hover {
+    background-color: rgb(211, 211, 211, 0.5);
+}
+
+.tagsDropdown {
+    cursor: pointer;
+}
+
+.alertMessage {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+.addTagButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+.addTags {
+    background-color: rgb(46, 105, 255);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}

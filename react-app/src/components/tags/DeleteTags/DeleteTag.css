@@ -1,0 +1,31 @@
+.deleteTag {
+    padding: 5px;
+}
+
+.deleteMidDiv {
+    padding: 10px;
+}
+
+.deleteBottomDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+}
+
+.deleteTagText {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.deleteSpace {
+    background-color: rgb(46, 105, 255);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

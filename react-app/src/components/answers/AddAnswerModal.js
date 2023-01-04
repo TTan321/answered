@@ -9,7 +9,7 @@ function AddAnswerModal({ user, question }) {
     return (
         <>
             <div className="answerDiv" onClick={() => setShowModal(true)}>
-                <i class="fas fa-pen-square"></i>
+                <i className="fas fa-pen-square"></i>
                 <p className="addAnswer">Answer</p>
             </div>
             {showModal && (

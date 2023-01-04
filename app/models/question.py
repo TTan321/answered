@@ -14,15 +14,14 @@ class Question(db.Model):
     updated_at = db.Column(db.Date, default=date.today())
     user = db.relationship('User', back_populates='questions')
     answers = db.relationship('Answer', back_populates='question', cascade='all, delete')
-    tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), nullable=True)
-    tag = db.relationship('Tag', back_populates='questions')
+    tags = db.relationship('Tag', back_populates='questions',secondary='questions_tags', cascade='all, delete')
+    question_tags = db.relationship('Question_Tag', back_populates='questions')
 
     def to_dict_question(self):
         return {
             'id': self.id,
             'userId': self.user_id,
             'question': self.question,
-            'tagId': self.tag_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
         }
@@ -32,10 +31,10 @@ class Question(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'question': self.question,
-            'tagId': self.tag_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'user': self.user.to_dict(),
             'answers': [answer.to_dict_answer() for answer in self.answers],
-            'tag': self.tag.to_dict_tag() if self.tag else None
+            'tags': [tag.to_dict_tag() for tag in self.tags],
+            'question_tags': [question_tag.to_dict_questions_tags() for question_tag in self.question_tags]
         }

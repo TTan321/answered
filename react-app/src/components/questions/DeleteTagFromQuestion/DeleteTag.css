@@ -1,0 +1,26 @@
+.DeleteAlert {
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(211, 211, 211);
+    padding-bottom: 5px;
+}
+
+.DeleteTagButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 10px;
+}
+
+.RemoveTagButton {
+    background-color: rgb(46, 105, 255);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
