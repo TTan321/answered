@@ -123,7 +123,6 @@ export const addTagToQuestion = payload => async dispatch => {
 }
 
 export const removeTagOnQuestion = payload => async dispatch => {
-    console.log("THIS IS THE PAYLOAD QUESTION ID: ")
     const response = await fetch(`/api/questions/tag/${payload.question_tag_id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" },

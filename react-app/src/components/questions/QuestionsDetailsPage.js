@@ -21,8 +21,6 @@ function QuestionDetailsPage() {
 
     const [showTopics, setShowTopics] = useState(false)
 
-    console.log('CURRENT QUESTION: ', currentQuestion)
-
     useEffect(() => {
         dispatch(authenticate())
         dispatch(loadQuestions())

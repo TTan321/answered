@@ -52,7 +52,6 @@ export const createTag = payload => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json()
-        console.log('DATA: ', data)
         dispatch(addTag(data.tag))
         return { ...data }
     }

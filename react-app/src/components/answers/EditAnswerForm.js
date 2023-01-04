@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editAnswer, getAnswers } from '../../store/answers'
-import { loadQuestions } from '../../store/questions'
 import { authenticate } from '../../store/session'
 import './EditAnswerForm.css'
 

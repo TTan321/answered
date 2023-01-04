@@ -17,7 +17,6 @@ function AddTag({ setShowModal, question }) {
     }
 
     let questionTagsArr = tagsArr.filter(tag => !tagsSet.has(tag.name))
-    console.log(questionTagsArr.length > 0)
 
     const [checkedTags, setCheckedTags] = useState(0)
     const [errors, setErrors] = useState([])
@@ -45,8 +44,6 @@ function AddTag({ setShowModal, question }) {
             question_id: +questionId,
             tag_id: checkedTags
         }
-
-        console.log('PAYLOAD: ', payload)
 
         await dispatch(addTagToQuestion(payload))
         await dispatch(loadQuestions())

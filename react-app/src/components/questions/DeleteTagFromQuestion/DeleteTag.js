@@ -7,10 +7,6 @@ function DeleteTag({ setShowModal, tag, question }) {
 
     const currentTag = question.question_tags.find(questionTag => questionTag.tag_id === tag.id)
 
-    console.log("CURRENT TAG: ", currentTag)
-    console.log("THIS IS THE TAG: ", tag)
-    console.log("THIS IS current question: ", question)
-
     const removeTag = () => {
 
         const payload = {
