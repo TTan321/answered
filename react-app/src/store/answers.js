@@ -82,6 +82,46 @@ export const deleteAnswer = id => async dispatch => {
     }
 }
 
+export const addComment = payload => async dispatch => {
+    const response = await fetch(`/api/answers/${payload.answerId}/user/${payload.userId}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(loadAnswers(data.answer))
+        return { ...data }
+    }
+}
+
+export const updateComment = payload => async dispatch => {
+    const response = await fetch(`/api/comments/${payload.commentId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(loadAnswers(data.answer))
+        return { ...data }
+    }
+}
+
+export const removeComment = id => async dispatch => {
+    const response = await fetch(`/api/comments/${id}`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(id)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(loadAnswers(data.answer))
+        return { ...data }
+    }
+}
+
+
 // Reducer
 const answersReducer = (state = {}, action) => {
     switch (action.type) {
