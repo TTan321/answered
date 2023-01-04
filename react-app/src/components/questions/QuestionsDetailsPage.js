@@ -37,19 +37,11 @@ function QuestionDetailsPage() {
                     {showTopics && (
                         <div className="tagDisplay">
                             {
-                                // currentQuestion.tags.map(tag => (
-                                //     <div className="questionsTags" key={tag.id} >
-                                //         {tag.name}
-                                //     </div>
-                                // ))
                                 currentQuestion.tags.map(tag => (
                                     <DeleteTagModal key={tag.id} tag={tag} question={currentQuestion} />
-                                    // <div className="questionsTags" key={tag.id} >
-                                    //     {tag.name}
-                                    // </div>
                                 ))
                             }
-                            < AddTagModal question={currentQuestion} />
+                            <AddTagModal question={currentQuestion} />
                         </div>
                     )}
                     <div className="questiontextDiv">
@@ -58,7 +50,7 @@ function QuestionDetailsPage() {
                     {user.id !== currentQuestion.userId && (
                         < div className="interactionDiv">
                             <AddAnswerModal question={currentQuestion} user={user} />
-                            <i className="fas fa-info-circle" onClick={() => setShowTopics(showTopics ? false : true)} />
+                            <i className="fas fa-info-circle details" onClick={() => setShowTopics(showTopics ? false : true)} />
                         </div>
                     )}
                     {user.id !== currentQuestion.userId && filteredAnswers.length === 0 && (

@@ -13,10 +13,10 @@
     border-radius: 5px;
     width: 628px;
     height: max-content;
+    padding: 0 16px;
 }
 
 .questiontextDiv {
-    padding: 0 16px;
     padding-top: 16px;
     padding-bottom: 10px;
     overflow-wrap: break-word;
@@ -30,10 +30,26 @@
 
 .interactionDiv {
     height: 30px;
+    width: 95%;
     margin-top: 10px;
     margin-bottom: 5px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.details {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.details:hover {
+    background-color: rgb(211, 211, 211, 0.3);
 }
 
 .answerDiv {
@@ -101,17 +117,25 @@
 .tagDisplay {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+    column-gap: 2px;
 }
 
 .questionsTags {
     display: flex;
     align-items: center;
-    background-color: rgb(211, 211, 211, 0.5);
-    padding: 3px 3px;
+    color: gray;
+    background-color: rgb(211, 211, 211, 0.3);
+    padding: 5px 5px;
     margin-left: 3px;
     margin-top: 3px;
     font-size: 13px;
-    column-gap: 5px;
     height: 15px;
     width: min-content;
+}
+
+.questionsTags:hover {
+    color: rgb(0, 0, 255, 0.7);
+    cursor: pointer;
 }
