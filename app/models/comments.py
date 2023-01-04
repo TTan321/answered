@@ -20,7 +20,7 @@ class Comment(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primaryKey=True)
+    id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.String(1000), nullable=False)
-    user_id = db.Column(db.Integer, db.ForiegnKey(add_prefix_for_prod('users.id')), nullable=True)
-    answer_id = db.Column(db.Integer, db.ForiegnKey(add_prefix_for_prod('answers.id')), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
+    answer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('answers.id')), nullable=True)

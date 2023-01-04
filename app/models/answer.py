@@ -15,7 +15,7 @@ class Answer(db.Model):
     updated_at = db.Column(db.Date, default=date.today())
     user = db.relationship('User', back_populates='answers')
     question = db.relationship('Question', back_populates='answers')
-    answer_comments = db.relationship('Answer', back_populates='user_comments', secondary='comments', cascade='all, delete')
+    answer_comments = db.relationship('User', back_populates='user_comments', secondary='comments', cascade='all, delete')
 
     def to_dict_answer(self):
         return {

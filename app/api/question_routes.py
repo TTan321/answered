@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Question, Answer, Tag, Question_Tag
+from app.models import db, Question, Answer, Tag
 from ..forms.question_form import QuestionForm
 from..forms.answer_form import AnswerForm
 from flask_login import current_user
