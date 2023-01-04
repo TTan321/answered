@@ -15,7 +15,7 @@ class Question(db.Model):
     user = db.relationship('User', back_populates='questions')
     answers = db.relationship('Answer', back_populates='question', cascade='all, delete')
     tags = db.relationship('Tag', back_populates='questions',secondary='questions_tags', cascade='all, delete')
-    question_tags = db.relationship('Question_Tag', back_populates='questions')
+    # question_tags = db.relationship('Question_Tag', back_populates='questions')
 
     def to_dict_question(self):
         return {
@@ -36,5 +36,5 @@ class Question(db.Model):
             'user': self.user.to_dict(),
             'answers': [answer.to_dict_answer() for answer in self.answers],
             'tags': [tag.to_dict_tag() for tag in self.tags],
-            'question_tags': [question_tag.to_dict_questions_tags() for question_tag in self.question_tags]
+            # 'question_tags': [question_tag.to_dict_questions_tags() for question_tag in self.question_tags]
         }

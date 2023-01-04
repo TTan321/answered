@@ -5,12 +5,13 @@ import './DeleteTag.css'
 function DeleteTag({ setShowModal, tag, question }) {
     const dispatch = useDispatch();
 
-    const currentTag = question.question_tags.find(questionTag => questionTag.tag_id === tag.id)
-
+    // const currentTag = question.question_tags.find(questionTag => questionTag.tag_id === tag.id)
+    console.log("QUesiotn: ", question)
     const removeTag = () => {
 
         const payload = {
-            question_tag_id: currentTag.id
+            questionId: question.id,
+            tagId: tag.id
         }
 
         dispatch(removeTagOnQuestion(payload))
