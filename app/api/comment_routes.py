@@ -7,6 +7,12 @@ from datetime import date
 
 comment_routes = Blueprint('comments', __name__)
 
+# Get all comments
+@comment_routes.route('', methods=['GET'])
+def get_comments():
+    comments = Comment.query.all()
+    return {'comments': [comment.to_dict_comment_rel() for comment in comments]}
+
 
 # Update a comment for answer
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])

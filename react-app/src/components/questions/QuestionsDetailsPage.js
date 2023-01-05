@@ -10,6 +10,7 @@ import AddTagModal from "./AddTagToQuestion/AddTagModal";
 import CommentFormModal from "../comments/commentFormModal";
 import DeleteTagModal from "./DeleteTagFromQuestion/DeleteTagModal";
 import './QuestionDetailsPage.css'
+import QuestionAnswers from "../answers/QuestionDetailAnswers";
 
 function QuestionDetailsPage() {
     const dispatch = useDispatch()
@@ -73,6 +74,14 @@ function QuestionDetailsPage() {
                 <div className="answerAmount">
                     <p>{filteredAnswers.length} Answers</p>
                 </div>
+                {
+                    filteredAnswers.map(answer => (
+                        <QuestionAnswers key={answer.id} filteredAnswers={answer} />
+                    ))
+                }
+                {/* <div className="answerAmount">
+                    <p>{filteredAnswers.length} Answers</p>
+                </div>
                 <div id='answerFeedDiv'>
                     {
                         filteredAnswers.map(answer => (
@@ -85,12 +94,22 @@ function QuestionDetailsPage() {
                                     {answer.answer}
                                 </div>
                                 <div className="answerNavi">
-                                    <CommentFormModal user={user} answer={answer} />
+                                    {/* <CommentFormModal user={user} answer={answer} /> */}
+                {/* <i className="far fa-comment" onClick={() => setShowComments(showComments ? false : true)} />
                                 </div>
+                                {
+                                    showComments && (
+                                        answer.comments.map((comment, idx) => (
+                                            <div key={idx}>
+                                                {comment.comment}
+                                            </div>
+                                        ))
+                                    )
+                                }
                             </div>
                         ))
                     }
-                </div>
+                </div> */}
             </div>
         </div >
     )

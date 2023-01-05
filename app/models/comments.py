@@ -41,6 +41,6 @@ class Comment(db.Model):
             'comment': self.comment,
             'user_id': self.user_id,
             'answer_id': self.answer_id,
-            'user': self.user,
-            'answers': [answer.to_dict_answer() for answer in self.answers]
+            'user': self.user.to_dict_no_rel(),
+            'answers': self.answers.to_dict_answer()
         }
