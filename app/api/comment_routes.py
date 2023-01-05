@@ -18,7 +18,7 @@ def update_comment(comment_id):
         comment.comment = form.data['comment']
         db.session.commit()
         answers = Answer.query.all()
-        return {'answer': answers.to_dict_answer_rel()}
+        return {'answer': [answer.to_dict_answer_rel() for answer in answers]}
     return {'message': 'question or tag does not exist'}
 
 # Delete a comment for answer
@@ -29,5 +29,5 @@ def delete_comment(comment_id):
         db.session.delete(comment)
         db.session.commit()
         answers = Answer.query.all()
-        return {'answer': answers.to_dict_answer_rel()}
+        return {'answer': [answer.to_dict_answer_rel() for answer in answers]}
     return {'message': 'comment does not exist'}

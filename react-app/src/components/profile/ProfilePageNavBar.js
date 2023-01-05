@@ -1,17 +1,26 @@
 import './ProfilePageNavBar.css'
 
-function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions }) {
+function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, setShowQuestions, setShowComments, showComments }) {
 
     const displayAnswers = (e) => {
         e.preventDefault()
         setShowQuestions(false)
         setShowAnswers(true)
+        setShowComments(false)
     }
 
     const displayQuestions = (e) => {
         e.preventDefault()
         setShowAnswers(false)
         setShowQuestions(true)
+        setShowComments(false)
+    }
+
+    const displayComments = (e) => {
+        e.preventDefault()
+        setShowAnswers(false)
+        setShowQuestions(false)
+        setShowComments(true)
     }
 
     const filterStyles = {
@@ -35,7 +44,14 @@ function ProfilePageNavBar({ user, showAnswers, setShowAnswers, showQuestions, s
             >
                 {user.questions.length} Questions
             </p>
-        </div >
+            <p
+                className='profileNavFilters'
+                onClick={(e) => displayComments(e)}
+                style={showComments ? filterStyles : {}}
+            >
+                {user.comments.length} Comments
+            </p>
+        </div>
     )
 }
 
