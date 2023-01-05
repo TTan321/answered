@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { loadQuestions } from "../../../store/questions";
-import { authenticate } from "../../../store/session";
-import { addComment } from "../../../store/answers";
+import { loadQuestions } from "../../store/questions";
+import { authenticate } from "../../store/session";
+import { addComment } from "../../store/answers";
 
 function CommentForm({ setShowModal, user, answer }) {
     const dispatch = useDispatch()

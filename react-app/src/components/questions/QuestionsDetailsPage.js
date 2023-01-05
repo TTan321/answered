@@ -7,7 +7,7 @@ import { authenticate } from "../../store/session";
 import AddAnswerModal from "../answers/AddAnswerModal";
 import NavBar from "../navbar/NavBar";
 import AddTagModal from "./AddTagToQuestion/AddTagModal";
-import CommentFormModal from "./comments/commentFormModal";
+import CommentFormModal from "../comments/commentFormModal";
 import DeleteTagModal from "./DeleteTagFromQuestion/DeleteTagModal";
 import './QuestionDetailsPage.css'
 

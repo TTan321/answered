@@ -8,6 +8,7 @@ import EditQuestionModal from "../questions/EditQuestionModal"
 import EditAnswerModal from "../answers/EditAnswerModal";
 import { deleteAnswer, getAnswers, removeComment } from "../../store/answers";
 import './ProfilePage.css'
+import UpdateCommentModal from "../comments/updateCommentModal";
 
 function ProfilePage() {
     const dispatch = useDispatch()
@@ -135,7 +136,7 @@ function ProfilePage() {
                                         <div className="timeAndButtons">
                                             {/* <p id='postedTime'><span id='posted'>Posted: </span><span id='date'>{answer.createdAt.slice(5, 16)}</span></p> */}
                                             <div>
-                                                {/* <EditAnswerModal user={user} answer={answer} questions={questionsArr} /> */}
+                                                <UpdateCommentModal user={user} comment={comment} questions={questionsArr} />
                                                 <button className="delete modifyButtons" onClick={(e) => deleteComment(e, comment.id)}>Delete</button>
                                             </div>
                                         </div>
