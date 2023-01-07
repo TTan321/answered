@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { getComments } from "../../store/comments"
+import { authenticate } from "../../store/session"
+import CommentBubble from "../comments/commentForm2"
 
 
 function QuestionAnswers({ filteredAnswers }) {
+    const history = useHistory()
     const dispatch = useDispatch()
     const [showComments, setShowComments] = useState(false)
     const comments = useSelector(state => state.commentsState)
@@ -13,16 +17,8 @@ function QuestionAnswers({ filteredAnswers }) {
 
     useEffect(() => {
         dispatch(getComments())
+        dispatch(authenticate())
     }, [dispatch])
-
-
-
-    const getCommentUser = commentId => {
-        console.log("HI")
-        const user = commentsArr.find(comment => comment.id === commentId)
-        console.log("USER: ", user)
-        return `${user.user.firstname} ${user.user.lastname}`
-    }
 
     return (
         <div id='answerFeedDiv'>
@@ -41,20 +37,22 @@ function QuestionAnswers({ filteredAnswers }) {
             </div>
             {
                 showComments && (
-                    (<div>
+                    <div>
+                        <CommentBubble answer={filteredAnswers} />
+                        {
+                            filteredAnswers.comments.map((comment, idx) => (
+                                <div key={idx} className='answersContainer'>
+                                    <div className="answerProfileDiv">
+                                        <i className="fas fa-user-circle fa-2x" />
+                                        {filteredAnswers.user.firstname} {filteredAnswers.user.lastname}
+                                    </div>
+                                    <div className="commentsTextDiv">
+                                        {comment.comment}
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
-                    )
-                    &&
-                    filteredAnswers.comments.map((comment, idx) => (
-                        <div key={idx} className='answersContainer'>
-                            <div className="answerProfileDiv">
-                                {getCommentUser(comment.id)}
-                            </div>
-                            <div className="answerTextDiv">
-                                {comment.comment}
-                            </div>
-                        </div>
-                    ))
                 )
             }
         </div>

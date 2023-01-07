@@ -7,7 +7,7 @@ function CommentFormModal({ answer, user }) {
 
     return (
         <>
-            <i className="far fa-comment" onClick={() => setShowModal(true)} />
+            <div id='questionBubble' onClick={() => setShowModal(true)}><span id='questionBubbleText'>Add a comment</span></div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CommentForm setShowModal={setShowModal} user={user} answer={answer} />

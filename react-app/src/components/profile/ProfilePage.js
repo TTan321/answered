@@ -4,7 +4,7 @@ import { authenticate } from "../../store/session";
 import NavBar from "../navbar/NavBar";
 import ProfilePageNavBar from "./ProfilePageNavBar";
 import { loadQuestions, removeQuestion } from "../../store/questions";
-import EditQuestionModal from "../questions/EditQuestionModal"
+import EditQuestionModal from "../questions/QuestionForms/EditQuestionModal"
 import EditAnswerModal from "../answers/EditAnswerModal";
 import { deleteAnswer, getAnswers, removeComment } from "../../store/answers";
 import './ProfilePage.css'

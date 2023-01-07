@@ -1,40 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { modifyQuestion, loadQuestions } from '../../store/questions'
-import { authenticate } from '../../store/session'
+import { loadQuestions, postQuestion } from '../../../store/questions'
+import { authenticate } from '../../../store/session'
 import './AddQuestionForm.css'
 
-function EditQuestionForm({ setShowModal, question }) {
+function AddQuestionForm({ setShowModal, user }) {
     const dispatch = useDispatch()
-    const [editedQuestion, setEditedQuestion] = useState(question.question);
+    const [question, setQuestion] = useState('');
+    const [chars, setChars] = useState(0)
     const [errors, setErrors] = useState([]);
-    const [chars, setChars] = useState(question.question.length)
 
     useEffect(() => {
-        setChars(editedQuestion.trim().length)
-    }, [editedQuestion])
+        setChars(question.trim().length)
+    }, [question])
+
+    // const submitQuestion = (e) => {
+    //     e.preventDefault()
+    //     setQuestion(e.target.value)
+    //     setChars(question.trim().length)
+    // }
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedQuestion.trim().length === 0) validateErrors.push("Cannot post empty question.");
-        if (editedQuestion.length < 30 || editedQuestion.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
+        if (question.trim().length === 0) validateErrors.push("Cannot post empty question.");
+        if (question.length < 30 || question.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
-            'question': editedQuestion,
-            'userId': question.userId,
-            'questionId': question.id
+            'question': question,
+            'userId': user.id
         }
 
-        if (editedQuestion.trim().length > 29 && editedQuestion.trim().length < 251) {
-            await dispatch(modifyQuestion(payload))
+        if (question.trim().length > 29 && question.trim().length < 251) {
+            await dispatch(postQuestion(payload))
             await dispatch(loadQuestions())
             await dispatch(authenticate())
             setShowModal(false);
         }
-
     };
 
     return (
@@ -43,7 +48,7 @@ function EditQuestionForm({ setShowModal, question }) {
                 <i className="fas fa-times add-question-cancel"></i>
             </div>
             <div>
-                <h1 id='questionFormTitle'>Edit Question</h1>
+                <h1 id='questionFormTitle'>Add Question</h1>
             </div>
             <form onSubmit={onSubmit} id='questionForm'>
                 <div className='addQuestionDiv'>
@@ -52,9 +57,9 @@ function EditQuestionForm({ setShowModal, question }) {
                         className='questionTextbox'
                         rows="9"
                         cols="60"
-                        value={editedQuestion}
+                        value={question}
                         placeholder="Type Question here"
-                        onChange={(e) => setEditedQuestion(e.target.value)}>
+                        onChange={(e) => setQuestion(e.target.value)}>
                     </textarea>
                     <div id='charLimitsOutDiv'>
                         <div id='charLimits'>({chars}/250)</div>
@@ -73,4 +78,4 @@ function EditQuestionForm({ setShowModal, question }) {
     )
 }
 
-export default EditQuestionForm
+export default AddQuestionForm
