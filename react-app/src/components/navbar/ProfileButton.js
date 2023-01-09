@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import LogoutButton from '../auth/LogoutButton';
 import { logout } from '../../store/session'
-import AddQuestionModal from '../questions/AddQuestionModal';
+import AddQuestionModal from '../questions/QuestionForms/AddQuestionModal';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {

@@ -1,40 +1,45 @@
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { modifyQuestion, loadQuestions } from '../../store/questions'
-import { authenticate } from '../../store/session'
-import './AddQuestionForm.css'
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadQuestions } from "../../store/questions";
+import { authenticate } from "../../store/session";
+import { addComment } from "../../store/answers";
 
-function EditQuestionForm({ setShowModal, question }) {
+function CommentForm({ setShowModal, user, answer }) {
     const dispatch = useDispatch()
-    const [editedQuestion, setEditedQuestion] = useState(question.question);
+    const [comment, setComment] = useState('');
+    const [chars, setChars] = useState(0)
     const [errors, setErrors] = useState([]);
-    const [chars, setChars] = useState(question.question.length)
 
     useEffect(() => {
-        setChars(editedQuestion.trim().length)
-    }, [editedQuestion])
+        setChars(comment.trim().length)
+    }, [comment])
+
+    // const submitQuestion = (e) => {
+    //     e.preventDefault()
+    //     setQuestion(e.target.value)
+    //     setChars(question.trim().length)
+    // }
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         const validateErrors = [];
-        if (editedQuestion.trim().length === 0) validateErrors.push("Cannot post empty question.");
-        if (editedQuestion.length < 30 || editedQuestion.length > 251) validateErrors.push("Question must be between 30 and 250 characters.");
+        if (comment.trim().length === 0) validateErrors.push("Cannot post empty comment.");
+        if (comment.length < 30 || comment.length > 251) validateErrors.push("Comment must be between 30 and 250 characters.");
         await setErrors(validateErrors);
 
         const payload = {
-            'question': editedQuestion,
-            'userId': question.userId,
-            'questionId': question.id
+            'answerId': answer.id,
+            'userId': user.id,
+            'comment': comment
         }
 
-        if (editedQuestion.trim().length > 29 && editedQuestion.trim().length < 251) {
-            await dispatch(modifyQuestion(payload))
+        if (comment.trim().length > 29 && comment.trim().length < 251) {
+            await dispatch(addComment(payload))
             await dispatch(loadQuestions())
             await dispatch(authenticate())
             setShowModal(false);
         }
-
     };
 
     return (
@@ -43,18 +48,18 @@ function EditQuestionForm({ setShowModal, question }) {
                 <i className="fas fa-times add-question-cancel"></i>
             </div>
             <div>
-                <h1 id='questionFormTitle'>Edit Question</h1>
+                <h1 id='questionFormTitle'>Add Comment</h1>
             </div>
             <form onSubmit={onSubmit} id='questionForm'>
                 <div className='addQuestionDiv'>
-                    <label htmlFor="question" />
+                    <label htmlFor="comment" />
                     <textarea
                         className='questionTextbox'
                         rows="9"
                         cols="60"
-                        value={editedQuestion}
-                        placeholder="Type Question here"
-                        onChange={(e) => setEditedQuestion(e.target.value)}>
+                        value={comment}
+                        placeholder="Type here"
+                        onChange={(e) => setComment(e.target.value)}>
                     </textarea>
                     <div id='charLimitsOutDiv'>
                         <div id='charLimits'>({chars}/250)</div>
@@ -65,7 +70,7 @@ function EditQuestionForm({ setShowModal, question }) {
                         ))}
                     </div>
                     <div className='postButtonDiv'>
-                        <button className='submitQuestion' type="submit">Submit Question</button>
+                        <button className='submitQuestion' type="submit">Submit</button>
                     </div>
                 </div>
             </form>
@@ -73,4 +78,4 @@ function EditQuestionForm({ setShowModal, question }) {
     )
 }
 
-export default EditQuestionForm
+export default CommentForm

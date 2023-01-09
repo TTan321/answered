@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal'
-import AddQuestionForm from './AddQuestionForm';
+import AddQuestionForm from '../questions/QuestionForms/AddQuestionForm';
 
-function HomepageQuestionModal({ user }) {
+function HomepageQModalTwo({ user }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
             {/* <button className="addQuestion" onClick={() => setShowModal(true)}>Add Question</button> */}
-            <div id='questionBubble' onClick={() => setShowModal(true)}><span id='questionBubbleText'>What do you want to ask?</span></div>
+            <div className="questionAsk" onClick={() => setShowModal(true)}>
+                <span style={{ color: 'gray' }}>Ask</span>
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddQuestionForm setShowModal={setShowModal} user={user} />
@@ -18,4 +20,4 @@ function HomepageQuestionModal({ user }) {
     );
 }
 
-export default HomepageQuestionModal;
+export default HomepageQModalTwo;
