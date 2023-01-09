@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loadQuestions, postQuestion } from '../../store/questions'
-import { authenticate } from '../../store/session'
+import { loadQuestions, postQuestion } from '../../../store/questions'
+import { authenticate } from '../../../store/session'
 import './AddQuestionForm.css'
 
 function AddQuestionForm({ setShowModal, user }) {

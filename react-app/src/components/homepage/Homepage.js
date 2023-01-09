@@ -7,8 +7,8 @@ import { authenticate } from "../../store/session";
 import About from "../about/About";
 import Tags from "../tags/Tags";
 import NavBar from "../navbar/NavBar";
-import HomepageQuestionModal from "../questions/HomePageQuestionModal";
-import HomepageQModalTwo from "../questions/HomepageQModalTwo";
+import HomepageQuestionModal from "./HomePageQuestionModal"
+import HomepageQModalTwo from "./HomepageQModalTwo";
 import { loadTags } from "../../store/tags";
 import './Homepage.css'
 

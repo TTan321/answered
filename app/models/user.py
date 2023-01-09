@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     questions = db.relationship('Question', back_populates='user', cascade='all,delete')
     answers = db.relationship('Answer', back_populates='user', cascade='all,delete')
+    comments = db.relationship('Comment', back_populates='user')
 
     @property
     def password(self):
@@ -37,5 +38,15 @@ class User(db.Model, UserMixin):
             'firstname': self.firstname,
             'lastname': self.lastname,
             'questions': [question.to_dict_question() for question in self.questions],
-            'answers': [answer.to_dict_answer() for answer in self.answers]
+            'answers': [answer.to_dict_answer() for answer in self.answers],
+            'comments': [comment.to_dict_comment() for comment in self.comments]
+        }
+
+    def to_dict_no_rel(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
         }
