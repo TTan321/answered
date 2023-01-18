@@ -34,3 +34,9 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.answerNavi {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
