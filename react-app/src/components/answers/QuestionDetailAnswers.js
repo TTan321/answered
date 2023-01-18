@@ -33,6 +33,8 @@ function QuestionAnswers({ filteredAnswers }) {
                 <div className="answerNavi">
                     {/* <CommentFormModal user={user} answer={answer} /> */}
                     <i className="far fa-comment" onClick={() => setShowComments(showComments ? false : true)} />
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>{filteredAnswers.comments.length} {filteredAnswers.comments.length === 1 ? "Comment" : "Comments"}
+                    </span>
                 </div>
             </div>
             {
@@ -55,7 +57,7 @@ function QuestionAnswers({ filteredAnswers }) {
                     </div>
                 )
             }
-        </div>
+        </div >
     )
 }
 

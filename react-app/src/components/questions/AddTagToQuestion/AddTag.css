@@ -65,3 +65,21 @@
     margin-top: 10px;
     margin-bottom: 15px;
 }
+
+.addTagButton {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 25px;
+    height: 30px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.addTagButton:hover {
+    cursor: pointer;
+    background-color: rgb(211, 211, 211, 0.5);
+}

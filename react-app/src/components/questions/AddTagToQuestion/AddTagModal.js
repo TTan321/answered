@@ -9,7 +9,12 @@ function AddTagModal({ question }) {
 
     return (
         <>
-            <i className="fas fa-edit addTagIcon" onClick={() => setShowModal(true)} />
+            <div className='addTagButton' onClick={() => setShowModal(true)} >
+                <i className="fas fa-edit" />
+                <span className="addAnswer">
+                    Add Tag
+                </span>
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddTag setShowModal={setShowModal} question={question} />
