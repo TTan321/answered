@@ -34,6 +34,9 @@ function QuestionDetailsPage() {
             <NavBar user={user} />
             <div id='questionDetailPage'>
                 <div className="questionDiv">
+                    <div className="questiontextDiv">
+                        <p className="questionText">{currentQuestion.question}</p>
+                    </div>
                     {showTopics && (
                         <div className="tagDisplay">
                             {
@@ -44,14 +47,16 @@ function QuestionDetailsPage() {
                             <AddTagModal question={currentQuestion} />
                         </div>
                     )}
-                    <div className="questiontextDiv">
-                        <p className="questionText">{currentQuestion.question}</p>
-                    </div>
                     {
                         user.id !== currentQuestion.userId && (
                             < div className="interactionDiv">
                                 <AddAnswerModal question={currentQuestion} user={user} />
-                                <i className="fas fa-info-circle details" onClick={() => setShowTopics(showTopics ? false : true)} />
+                                <div className="answerDiv" onClick={() => setShowTopics(showTopics ? false : true)}>
+                                    <i className="fas fa-info-circle" />
+                                    <span className="addAnswer">
+                                        Details
+                                    </span>
+                                </div>
                             </div>
                         )
                     }
