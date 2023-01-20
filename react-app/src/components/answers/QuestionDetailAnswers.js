@@ -12,8 +12,7 @@ function QuestionAnswers({ filteredAnswers }) {
     const [showComments, setShowComments] = useState(false)
     const comments = useSelector(state => state.commentsState)
     const commentsArr = Object.values(comments)
-    console.log("filteredNAswers: ", filteredAnswers)
-    console.log("comments: ", comments)
+
 
     useEffect(() => {
         dispatch(getComments())
