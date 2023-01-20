@@ -22,7 +22,7 @@ function ProfilePage() {
     const [showQuestions, setShowQuestions] = useState(false)
     const [showComments, setShowComments] = useState(false)
 
-    console.log("answersArr: ", answersArr)
+
 
     useEffect(() => {
         dispatch(authenticate())
@@ -58,7 +58,7 @@ function ProfilePage() {
 
     const getAnswerForComments = (answerId) => {
         const answer = answersArr.find(answer => answer.id === answerId)
-        console.log("answer: ", answer)
+
         return answer.answer
     }
 

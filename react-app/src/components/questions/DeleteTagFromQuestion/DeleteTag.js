@@ -6,7 +6,7 @@ function DeleteTag({ setShowModal, tag, question }) {
     const dispatch = useDispatch();
 
     // const currentTag = question.question_tags.find(questionTag => questionTag.tag_id === tag.id)
-    console.log("QUesiotn: ", question)
+
     const removeTag = () => {
 
         const payload = {
