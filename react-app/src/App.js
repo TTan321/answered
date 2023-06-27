@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ReactGA from 'react-ga';
+import RouteChangeTracker from './components/analytics/RouteChangeTracker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
@@ -16,6 +18,9 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  const TRACKING_ID = "G-7LRL4QJ8P8";
+  ReactGA.initialize(TRACKING_ID);
+
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -29,6 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <RouteChangeTracker />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
